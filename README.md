@@ -27,7 +27,7 @@ DTOB is a open source number bases converter written in C. You can use DTOB to c
 
 Here is a list of available options: `-h` `-d` `-b` `-i` `-m`
 
-`-h` : prints the help message.
+`-h` : print the help message.
 
 `-d` : convert decimal number to binary.
 
