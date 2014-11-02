@@ -1,6 +1,6 @@
 ![DTOB](https://dl.dropboxusercontent.com/u/221687308/www/resources/github/dtob_logo.png)
 
-DTOB is written in C and it stands for <b>Decimal to Binary and Binary to Decimal Converter</b>. Therefore, you can use DTOB to convert binary numbers to decimal numbers, or decimal numbers to binary numbers. It provides two ways to convert number bases. You can ethier input numbers directly through the terminal, or enter the interactive mode.
+DTOB is written in C and it stands for <b>Decimal to Binary and Binary to Decimal Converter</b>. Therefore, you can use DTOB to convert binary numbers to decimal numbers, or decimal numbers to binary numbers. It provides two ways to convert number bases. You can either input numbers directly through the terminal, or enter the interactive mode.
 
 ## Installing
 
@@ -50,3 +50,13 @@ Same way for the argument `-b`, which converts binary number to decimal:
 Output:
 
 `1230`
+
+### Interactive Mode
+
+You can either enter interactive mode just by runing the command `dtob`, or with the `-i` argument like, `dtob -i`.
+
+When you get into interactive mode, you will see a prompt like this:
+
+`use h for help` 
+
+`>>> _`
