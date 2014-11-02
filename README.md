@@ -23,7 +23,7 @@ DTOB is a open source number bases converter written in C. Therefore, you can us
 ## Usage
 
 ### Command Line
-`dtob [-options] [value <binary/decimal>(optional)]`
+`dtob [-options] [value (binary/decimal) <optional>]`
 
 Here is a list of available options: `-h` `-d` `-b` `-i` `-m`
 
