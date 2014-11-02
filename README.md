@@ -53,10 +53,12 @@ Output:
 
 ### Interactive Mode
 
-You can either enter interactive mode just by runing the command `dtob`, or with the `-i` argument like, `dtob -i`.
+You can either enter interactive mode by just runing the command `dtob`, or with the `-i` argument like, `dtob -i`.
 
 When you get into interactive mode, you will see a prompt like this:
 
 `use h for help` 
 
 `>>> _`
+
+Now you can enter a single character `h` for help. However, here are available options: `h`, `d`, `b`, `m`, and `q` 
