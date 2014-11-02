@@ -17,3 +17,24 @@ DTOB is written in C and it stands for <b>Decimal to Binary and Binary to Decima
 3. `cd /path/to/dtob`
 4. `chmod +x install`
 5. `./install`
+
+## Usage
+
+### Command Line
+`dtob [-options] [value (binary/decimal)(optional)]`
+
+Here is a list of available options: `-h` `-d` `-b` `-i` `-m`
+
+`-h` : prints the help message.
+
+`-d` : convert decimal number to binary.
+
+`-b` : convert binary number to decimal.
+
+`-i` : force the program enter interactive mode.
+
+`-m` : print information about this program.
+
+Option `-d` and option `-b` expects a number value after. For example, if we want to convert a decimal number 1112 to binary, then we will use the argument `-d` and a decimal number 1112:
+
+`dtob -d 1112`
