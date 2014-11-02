@@ -31,7 +31,7 @@ Here is a list of available options: `-h` `-d` `-b` `-i` `-m`
 
 `-b` : convert binary number to decimal.
 
-`-i` : force the program enter interactive mode.
+`-i` : force interactive mode.
 
 `-m` : print information about this program.
 
