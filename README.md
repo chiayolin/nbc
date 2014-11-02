@@ -63,14 +63,14 @@ When you get into interactive mode, you will see a prompt like this:
 
 Now you can enter a single character `h` for help. However, here are available options: `h`, `d`, `b`, `m`, and `q`
 
-You can convert a decimal number to binary by using the option `d`:
+You can convert a decimal number to binary by using the option `d`. Here is an example:
 
 `machine:~ chiayo$ dtob`
 
 `use h for help` 
 
-`>>> d` <RETURN>
+`>>> d` -> Press RETURN
 
-`1112 ` <RETURN> 
+`1112 ` -> Press RETURN 
 
 `10001011000`
