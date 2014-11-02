@@ -4,4 +4,3 @@
 
 dtob: dtob.c
 	gcc dtob.c -o dtob
-	@echo "DONE!"
