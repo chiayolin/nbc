@@ -31,7 +31,7 @@ void printa(const int array[MAX], const int size); /* Print an array */
 void reverse(int array[MAX], const int size); /* Reverse an array */
 void interactive(); /* Interactive mode */
 void help(int type); /* Print help messages base on the varible 'type' */
-void info(); /* Print information about this program */
+void info(); /* Print some information about this program */
 
 int main(const int argc, char *argv[]) {
 	int binary[MAX], decimal;
