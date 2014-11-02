@@ -69,8 +69,8 @@ You can convert a decimal number to binary by using the option `d`. Here is an e
 
 `use h for help` 
 
-`>>> d` -> Press RETURN
+`>>> d` `--> Press RETURN`
 
-`1112 ` -> Press RETURN 
+`1112 ` `--> Press RETURN`
 
 `10001011000`
