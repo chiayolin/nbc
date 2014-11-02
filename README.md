@@ -35,7 +35,7 @@ Here is a list of available options: `-h` `-d` `-b` `-i` `-m`
 
 `-i` : force interactive mode.
 
-`-m` : print information about this program.
+`-m` : print some info about this program.
 
 Arguments `-d` and `-b` expect a number value after. For example, if we want to convert a decimal number 256 to binary, then we will use the argument `-d` with a decimal number 410:
 
