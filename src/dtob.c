@@ -200,7 +200,7 @@ void help(int type) {
 	const char h[] = "print this usage and text\n",
 	    	   d[] = "convert decimal to binary\n",
 	    	   b[] = "convert binary to decimal\n",
-	    	   i[] = "force enter interactived mode\n",
+	    	   i[] = "force enter interactive mode\n",
 	    	   m[] = "more info about this program\n";
 
 	switch(type) {
