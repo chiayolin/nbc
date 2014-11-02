@@ -74,3 +74,13 @@ You can convert a decimal number to binary by using the option `d`. Here is an e
 `1112 ` (Press RETURN)
 
 `10001011000`
+
+Or from binary to decimal number:
+
+`...`
+
+`>>> b` (Press RETURN)
+
+`1100101010` (Press RETURN)
+
+`8101`
