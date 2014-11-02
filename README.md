@@ -35,7 +35,7 @@ Here is a list of available options: `-h` `-d` `-b` `-i` `-m`
 
 `-m` : print information about this program.
 
-arguments `-d` and `-b` expect a number value after. For example, if we want to convert a decimal number 256 to binary, then we will use the argument `-d` with a decimal number 410:
+Arguments `-d` and `-b` expect a number value after. For example, if we want to convert a decimal number 256 to binary, then we will use the argument `-d` with a decimal number 410:
 
 `dtob -d 410`
 
