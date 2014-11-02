@@ -4,7 +4,7 @@ DTOB is written in C and it stands for <b>Decimal to Binary and Binary to Decima
 
 ## Installing
 
-### Linux and MAC OS X
+### Linux and Mac OS X
 1. Open your terminal
 2. `git clone http://github.com/chiayolin/dtob`
 3. `cd /path/to/dtob`
@@ -12,7 +12,7 @@ DTOB is written in C and it stands for <b>Decimal to Binary and Binary to Decima
 5. `./install`
 
 ### Windows
-1. Install Linux
+1. Install Linux :-)
 2. `git clone http://github.com/chiayolin/dtob`
 3. `cd /path/to/dtob`
 4. `chmod +x install`
