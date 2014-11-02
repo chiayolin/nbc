@@ -61,4 +61,16 @@ When you get into interactive mode, you will see a prompt like this:
 
 `>>> _`
 
-Now you can enter a single character `h` for help. However, here are available options: `h`, `d`, `b`, `m`, and `q` 
+Now you can enter a single character `h` for help. However, here are available options: `h`, `d`, `b`, `m`, and `q`
+
+You can convert a decimal number to binary by using the option `d`:
+
+`machine:~ chiayo$ dtob`
+
+`use h for help` 
+
+`>>> d` <RETURN>
+
+`1112 ` <RETURN> 
+
+`10001011000`
