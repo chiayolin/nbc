@@ -43,7 +43,7 @@ Output:
 
 `110011010`
 
-Same way for the argument `-b`, which convert binary number to decimal:
+Same way for the argument `-b`, which converts binary number to decimal:
 
 `dtob -b 10011001110`
 
