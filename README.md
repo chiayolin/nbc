@@ -35,6 +35,18 @@ Here is a list of available options: `-h` `-d` `-b` `-i` `-m`
 
 `-m` : print information about this program.
 
-Option `-d` and option `-b` expects a number value after. For example, if we want to convert a decimal number 1112 to binary, then we will use the argument `-d` and a decimal number 1112:
+arguments `-d` and `-b` expect a number value after. For example, if we want to convert a decimal number 256 to binary, then we will use the argument `-d` with a decimal number 410:
 
-`dtob -d 1112`
+`dtob -d 410`
+
+Output:
+
+`110011010`
+
+Same way for the argument `-b`, which convert binary number to decimal:
+
+`dtob -b 10011001110`
+
+Output:
+
+`1230`
