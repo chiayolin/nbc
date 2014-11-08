@@ -130,7 +130,7 @@ int getaton(int array[MAX]) {
 	int i, c, size;
 	getchar(); /* To avoid a return '\n' */
 
-	while((c = getchar()) != '\n') {                                                                                                                             
+	while((c = getchar()) != '\n') {
 		array[i] = c - '0'; /* Convert ASCII to interger */
 		++i, ++size;
 	}
