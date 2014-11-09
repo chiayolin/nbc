@@ -87,6 +87,9 @@ Or from binary to decimal number:
 
 `810`
 
+When you whant to exit the interactive mode, just simply type `q` then hit return:
+`>>> q` (Press RETURN)
+
 ## License
 
 Copyright (C) 2014  Chiayo Lin <chiayo.lin@gmail.com>
