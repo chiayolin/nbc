@@ -2,5 +2,5 @@
 # Author: Chiayo Lin
 # Date  : Nov. 02, 2014
 
-dtob: dtob.c
-	gcc dtob.c -o dtob
+dtob: main.c core.c
+	gcc -o dtob main.c core.c
