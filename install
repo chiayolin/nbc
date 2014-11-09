@@ -1,13 +1,23 @@
 #!/bin/bash
 # This file is part of: dtob (Version 1.0)
 # Author: Chiayo Lin
-# Dare  : Nov. 02, 2014
+# Date  : Nov. 02, 2014
 
-cd ./src/
-make
+SRC_PATH=./src/
+PGM_PATH=/usr/local/bin/
+PGM_NAME=dtob
 
-echo "mv dtob /usr/local/bin"
-mv dtob /usr/local/bin
-echo "dtob successfully installed :-)"
+if [ -f $PGM_PATH$PGM_NAME ]
+then
+	echo "$PGM_NAME already installed on this machine!"
+else
+	cd $SRC_PATH
+	make
+
+	echo "mv $PGM_NAME $PGM_PATH..."
+	mv $PGM_NAME $PGM_PATH
+	echo "$PGM_NAME successfully installed :-)"
+fi
+
 cd ..
 exit 0
