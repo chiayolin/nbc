@@ -19,6 +19,7 @@
 #ifndef CORE_H
 #define CORE_H
 
+#define VERSION 1.1 /* Program version */
 #define MAX 1000 /* Maximum arrray size */
 
 /* Number Bases Conversions */
