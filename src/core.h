@@ -20,19 +20,10 @@
 #define CORE_H
 
 #define MAX 1000 /* Maximum arrray size */
-#define BIN 2
-#define OCT 8
-#define DEC 10
-#define HEX 16
 
 /* Number Bases Conversions */
 int btod(int binary[MAX], const int size); 	/* Convert Bin. to Dec. */
-int otod(int octal[MAX], const int size); 	/* Convert Oct. to Dec. */
-int htod(int hexadecimal[MAX], const int size); /* Convert Hex. to Dec. */
 int dtob(int decimal, int binary[MAX]); 	/* Convert Dec. to Bin. */
-int dtoo(int decimal, int octal[MAX]);		/* Convert Dec. to Oct. */
-int dtoh(int decimal, char hexadecimal[MAX]); 	/* Convert Dec. to Hex. */
-int convert(const int in_base, const int out_base, char value[MAX]); /* Convertion interface */
 
 
 int getaton(int array[MAX]); /* Read ASCII numbers into an array, convert to numbers, return size */

@@ -23,17 +23,6 @@
 #include <stdlib.h>
 #include <math.h>
 
-/* 
- * Internal Interface:
- * dtob()
- * dtoo()
- * dtoh()
- * btod()
- * otod()
- * htod()
- *
- */
-
 /* Convert Dec. to Bin */
 int dtob(int decimal, int binary[MAX]) {
 	int i, size;
@@ -50,24 +39,6 @@ int dtob(int decimal, int binary[MAX]) {
 
 	return size; /* Return the size of array */
 }
-
-/* Convert Dec. to Oct. */
-int dtoo(int decimal, int octal[MAX]) {
-	int i, size;
-	if(decimal == 0) {
-		octal[0] = 0;
-		return 1;
-	} /* octal[0] = 0 when decimal is 0 */
-
-	for(i = 0, size = 0; decimal != 0; i++, size++) {
-		octal[i] = decimal % 8;
-		decimal = decimal / 8;
-	}
-	reverse(octal, size);
-
-	return size;
-}
-
 
 /* Convert Bin. to Dec. */
 int btod(int binary[MAX], const int size) {
