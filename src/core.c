@@ -160,7 +160,7 @@ void help(int type) {
 
 /* Print some information about this program */
 void info() {
-	printf("dtob (Version 1.0) Copyrights (C) 2014 Chiayo Lin\n");
+	printf("dtob (Version VERSION) Copyrights (C) 2014 Chiayo Lin\n");
 	printf("Binary to Decimal and Decimal to Binary Converter\n\n");
 	printf("Source Code: <http://github.com/chiayolin/dtob/>\n");
 	printf("Author     : Chiayo Lin <chiayo.lin@gmail.com>\n\n");
