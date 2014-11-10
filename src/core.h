@@ -19,15 +19,18 @@
 #ifndef CORE_H
 #define CORE_H
 
-#define MAX 1000
+#define MAX 1000 /* Maximum arrray size */
+
+/* Number Bases Conversions */
+int btod(int binary[MAX], const int size); 	/* Convert Bin. to Dec. */
+int dtob(int decimal, int binary[MAX]); 	/* Convert Dec. to Bin. */
+
 
 int getaton(int array[MAX]); /* Read ASCII numbers into an array, convert to numbers, return size */
-int btod(int binary[MAX], const int size); /* Convert Bin. to Dec. */
-int dtob(int decimal, int binary[MAX]); /* Convert Dec. to Bin. */
 void printa(const int array[MAX], const int size); /* Print an array */
 void reverse(int array[MAX], const int size); /* Reverse an array */
 void interactive(); /* Interactive mode */
 void help(int type); /* Print help messages base on the varible 'type' */
 void info(); /* Print some information about this program */
 
- #endif
+#endif

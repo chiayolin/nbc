@@ -23,15 +23,13 @@
 #include <stdlib.h>
 #include <math.h>
 
-/* 
- * Convert Dec. to Bin.
- */
+/* Convert Dec. to Bin */
 int dtob(int decimal, int binary[MAX]) {
 	int i, size;
 	if(decimal == 0) {
 		binary[0] = 0;
 		return 1;
-	} /* To fix decimal = 0 prints a blank */
+	} /* binary[0] = 0 when decimal is 0 */
 
 	for(i = 0, size = 0; decimal != 0; i++, size++) {
 		binary[i] = decimal % 2;
@@ -42,9 +40,7 @@ int dtob(int decimal, int binary[MAX]) {
 	return size; /* Return the size of array */
 }
 
-/* 
- * Convert Bin. to Dec. 
- */
+/* Convert Bin. to Dec. */
 int btod(int binary[MAX], const int size) {
 	int i, decimal;
 	i = decimal = 0;
@@ -56,9 +52,7 @@ int btod(int binary[MAX], const int size) {
 	return decimal;
 }
 
-/* 
- * Read ASCII numbers into an array, convert to numbers, return array size 
- */
+/* Read ASCII numbers into an array, convert to numbers, return array size */
 int getaton(int array[MAX]) {
 	int i, c, size;
 	getchar(); /* To avoid a return '\n' */
@@ -70,9 +64,7 @@ int getaton(int array[MAX]) {
 	return size;
 }
 
-/*
- * Print an array
- */
+/* Print an array */
 void printa(const int array[MAX], const int size) {
 	int i;
 	for(i = 0; i < size; i++)
@@ -80,9 +72,7 @@ void printa(const int array[MAX], const int size) {
 	printf("\n");
 }
 
-/*
- * Reverse an array
- */
+/* Reverse an array */
 void reverse(int array[MAX], const int size) {
 	int temp[MAX], i;
 	for(i = 0; i < size; i++)
@@ -92,9 +82,7 @@ void reverse(int array[MAX], const int size) {
 		array[i] = temp[j];
 }
 
-/*
- * Interactive mode
- */
+/* Interactive mode */
 void interactive() {
 	int binary[MAX], decimal, size;
 
@@ -138,9 +126,7 @@ void interactive() {
 	}
 }
 
-/* 
- * Print help messages base on the varible 'type'
- */
+/* Print help messages base on the varible 'type' */
 void help(int type) {
 	const char h[] = "print this usage and text\n",
 	    	   d[] = "convert decimal to binary\n",
@@ -172,9 +158,7 @@ void help(int type) {
 	}
 }
 
-/*
- * Print some information about this program
- */
+/* Print some information about this program */
 void info() {
 	printf("dtob (Version 1.0) Copyrights (C) 2014 Chiayo Lin\n");
 	printf("Binary to Decimal and Decimal to Binary Converter\n\n");
