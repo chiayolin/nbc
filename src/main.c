@@ -34,16 +34,16 @@ int main(const int argc, char *argv[]) {
 	
 	/* Read the options if argv[0][0] = '-' */
 	else if((*++argv)[0] == '-') {
-		int binary[MAX], decimal, size;
-		char opt = *++argv[0];
+		int decimal, size;
+		char opt = *++argv[0], input[MAX];
 		switch(opt) {
 			case 'd':
 				if(argv[1] == NULL)
 					printf("agument to '-%s' is missing, expected a decimal number\n", argv[0]);
 				else {
 					decimal = atoi(argv[1]);
-					size = dtob(decimal, binary);
-					printa(binary, size);
+					size = dtob(decimal, input);
+					printa(input, size);
 				}
 				break;
 
@@ -54,8 +54,8 @@ int main(const int argc, char *argv[]) {
 					size = strlen(argv[1]);
 					int i;
 					for(i = 0; i < size; i++)
-						binary[i] = argv[1][i] - '0'; 
-					decimal = btod(binary, size);
+						input[i] = argv[1][i]; 
+					decimal = btod(input, size);
 					printf("%d\n", decimal);
 				}
 				break;
