@@ -23,13 +23,14 @@
 #define MAX 1000 /* Maximum arrray size */
 
 /* Number Bases Conversions */
-int btod(int binary[MAX], const int size); 	/* Convert Bin. to Dec. */
-int dtob(int decimal, int binary[MAX]); 	/* Convert Dec. to Bin. */
+int btod(char binary[MAX], const int size); 	/* Convert Bin. to Dec. */
+int otod(char octal[MAX], const int size);	/* Convert Oct. to Dec. */
+int dtob(int decimal, char binary[MAX]); 	/* Convert Dec. to Bin. */
+int dtoo(int decimal, char octal[MAX]);		/* Convert Dec. to Oct. */
 
-
-int getaton(int array[MAX]); /* Read ASCII numbers into an array, convert to numbers, return size */
-void printa(const int array[MAX], const int size); /* Print an array */
-void reverse(int array[MAX], const int size); /* Reverse an array */
+void read(char *array); /* Read user's input into an array */
+void printa(const char array[MAX], const int size); /* Print an array */
+void reverse(char array[MAX], const int size); /* Reverse an array */
 void interactive(); /* Interactive mode */
 void help(int type); /* Print help messages base on the varible 'type' */
 void info(); /* Print some information about this program */

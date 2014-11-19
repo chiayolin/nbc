@@ -24,15 +24,15 @@
 #include <math.h>
 
 /* Convert Dec. to Bin */
-int dtob(int decimal, int binary[MAX]) {
+int dtob(int decimal, char binary[MAX]) {
 	int i, size;
 	if(decimal == 0) {
-		binary[0] = 0;
+		binary[0] = '0';
 		return 1;
 	} /* binary[0] = 0 when decimal is 0 */
 
 	for(i = 0, size = 0; decimal != 0; i++, size++) {
-		binary[i] = decimal % 2;
+		binary[i] = (decimal % 2) + '0';
 		decimal = decimal / 2;
 	}
 	reverse(binary, size);
@@ -41,40 +41,41 @@ int dtob(int decimal, int binary[MAX]) {
 }
 
 /* Convert Bin. to Dec. */
-int btod(int binary[MAX], const int size) {
+int btod(char binary[MAX], const int size) {
 	int i, decimal;
 	i = decimal = 0;
 
 	reverse(binary, size);
 	for(i = 0; i < size; i++)
-		decimal = decimal + (binary[i] * (pow(2, i)));
+		decimal = decimal + ((binary[i] - '0') * (pow(2, i)));
 
 	return decimal;
 }
 
-/* Read ASCII numbers into an array, convert to numbers, return array size */
-int getaton(int array[MAX]) {
-	int i, c, size;
-	getchar(); /* To avoid a return '\n' */
+/* Read user's input into an array */ 
+void read(char *array) {
+	int i, c;
+	i = c = 0;
 
 	while((c = getchar()) != '\n') {
-		array[i] = c - '0'; /* Convert ASCII to interger */
-		++i, ++size;
+		array[i] = c;
+		++i;
 	}
-	return size;
+	array[i] = '\0';
 }
 
 /* Print an array */
-void printa(const int array[MAX], const int size) {
+void printa(const char array[MAX], const int size) {
 	int i;
 	for(i = 0; i < size; i++)
-		printf("%d", array[i]);
+		printf("%c", array[i]);
 	printf("\n");
 }
 
 /* Reverse an array */
-void reverse(int array[MAX], const int size) {
-	int temp[MAX], i;
+void reverse(char array[MAX], const int size) {
+	char temp[MAX];
+	int i;
 	for(i = 0; i < size; i++)
 		temp[i] = array[i]; /* Copy array into a buffer */
 	int j;
@@ -84,45 +85,111 @@ void reverse(int array[MAX], const int size) {
 
 /* Interactive mode */
 void interactive() {
-	int binary[MAX], decimal, size;
+	int argc, i, in, out;
+	char input[MAX], *arg[MAX];
+	char *token[] = {
+		"set", "help", "info", "quit", "state", "convert",
+		"input", "output", "bin", "oct", "dec", "hex" };
+	enum { 
+		SET = 0, HELP, INFO, QUIT, STATE, CONVERT, 
+		INPUT, OUTPUT, BIN, OCT, DEC, HEX };
 
 	printf("use h for help\n");
 	while(1) {
 		printf(">>> ");
+		read(input);
+		
+		argc = 0;
+		for(i = 0, arg[i] = strtok(input, " "); 
+			arg[i] != NULL; arg[i] = strtok(NULL, " "))
+				++i, ++argc;
 
-		char option;
-		scanf("%c", &option);
-		switch(option) {
-			case 'd': case 'D':
-				scanf("%d", &decimal);
-				size = dtob(decimal, binary);
-				printa(binary, size);
+		
+		i = 0;
+		while(strcmp(arg[0], token[i]) != 0)
+			++i;
+
+		switch(i) {
+			case SET: {
+				if(argc < 3) printf("missing arugument(s)\n");
+
+				else if(argc == 3) {
+					i = 6;
+					while(strcmp(arg[1], token[i]) != 0)
+						++i;
+
+					switch(i) {
+						case INPUT: {
+							while(strcmp(arg[2], token[i]) != 0)
+								++i;
+							switch(i) {
+								case BIN:
+									in = BIN;
+									break;
+								case OCT:
+									in = OCT;
+									break;
+								case DEC:
+									in = DEC;
+									break;
+								case HEX:
+									in = HEX;
+									break;
+								default:
+									printf("number base not found\n");
+									break;
+							}
+							break;
+						}
+						case OUTPUT: {
+							 while(strcmp(arg[2], token[i]) != 0)
+								 ++i;
+							 switch(i) {
+								case BIN:
+									 out = BIN;
+									 break;
+								case OCT:
+									 out = OCT;
+									 break;
+								case DEC:
+									 out = DEC;
+									 break;
+								case HEX:
+									 out = HEX;
+									 break;
+								default:
+									 printf("number base not found\n");
+									 break;
+							}
+							break; 
+						}
+						default:
+							printf("syntax error :-(\n");
+							break;
+					}	
+				}
 				break;
-
-			case 'b': case 'B':
-				size = getaton(binary);
-				decimal = btod(binary, size);
-				printf("%d\n", decimal);
-				break;
-
-			case 'h': case 'H':
+			}
+			case HELP:
 				help(2);
 				break;
-		
-			case 'q': case 'Q':
-				return;
-				break;
-
-			case 'm': case 'M':
+			case INFO:
 				info();
 				break;
-	
+			case STATE:
+				printf("This is state\n");
+				break;
+			case CONVERT:
+				if(argc < 2) printf("expect a value\n");
+				else printf("value = %s\n", arg[1]);
+				break;
+			case QUIT:
+				return;
+				break;
 			default:
-				if(option == '\n') break;
-				else printf("unfortunately, '%c' is not an option\n", option);
+				printf("%s: command not found\n", arg[0]);
 				break;
 		}
-		if(option != '\n' && option != 'b') getchar(); /* Trick to avoid scan a return, '\n' */
 	}
 }
 

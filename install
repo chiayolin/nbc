@@ -1,22 +1,75 @@
 #!/bin/bash
-# This file is part of: dtob (Version 1.0)
+# This file is part of: dtob (Version 1.1)
 # Author: Chiayo Lin
-# Date  : Nov. 02, 2014
+# Date  : Nov. 19, 2014
 
 SRC_PATH=./src/
 PGM_PATH=/usr/local/bin/
 PGM_NAME=dtob
+PGM_XIST=0
+COM_XIST=1
 
-if [ -f $PGM_PATH$PGM_NAME ]
-then
+# Check if program has been installed
+if [ -f $PGM_PATH$PGM_NAME ]; then
+	PGM_XIST=1
+fi
+
+# Check if gcc has been installed
+command -v gcc > /dev/null
+if [ $? != 0 ]; then
+	COM_XIST=0
+fi
+
+# If program has been installed, ask if user wants to uninstall
+if [ $PGM_XIST -eq 1 ]; then
 	echo "$PGM_NAME already installed on this machine!"
-else
+	echo -n "Do you want to uninstall it (y/n): "
+	read INPUT
+	if [ "$INPUT" == "y" ]; then
+		echo "rm $PGM_PATH$PGM_NAME..."
+		rm $PGM_PATH$PGM_NAME
+		
+		# If there is an error
+		if [ $? != 0 ]; then
+			echo "error while removing $PGM_NAME from $PGM_PATH" 
+		else
+			echo "$PGM_NAME successfully uninstalled :-)"
+		fi
+	fi
+
+	exit 0
+fi
+
+# Exit if gcc does not exist on the system
+if [ $COM_XIST -eq 0 ]; then
+	echo "GNU C complier does not exist, aborting."
+	exit 1
+fi
+
+# Installtion
+if [ $PGM_XIST -eq 0 ] && [ $COM_XIST -eq 1 ]; then
 	cd $SRC_PATH
 	make
 
-	echo "mv $PGM_NAME $PGM_PATH..."
-	mv $PGM_NAME $PGM_PATH
-	echo "$PGM_NAME successfully installed :-)"
+	# If There is an error
+	if [ $? != 0 ]; then
+		echo "OMG!!! complie error(s), aborting."
+		echo "please email me with error message(s)"
+		echo "<chiayo.lin@gmail.com>"
+		cd ..
+		exit 1
+	else
+		echo "mv $PGM_NAME $PGM_PATH..."
+		mv $PGM_NAME $PGM_PATH
+		if [ $? != 0 ]; then
+			echo "error while moving $PGM_NAME to $PGM_PATH"
+			cd ..
+			exit 1
+		else
+			echo "$PGM_NAME successfully installed :-)"
+		fi
+	fi
+
 fi
 
 cd ..
