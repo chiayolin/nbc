@@ -53,7 +53,7 @@ int btod(char binary[MAX], const int size) {
 }
 
 /* Read user's input into an array */ 
-void read(char array[MAX]) {
+void read(char *array) {
 	int i, c;
 	i = c = 0;
 
