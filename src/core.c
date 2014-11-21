@@ -52,6 +52,14 @@ int btod(char binary[MAX], const int size) {
 	return decimal;
 }
 
+/* Scan an array, return index if there is a token */
+int scan(char *array, char *tokens[], int index) {
+	while(strcmp(array, tokens[index]) != 0)
+		++index;
+
+	return index;
+}
+
 /* Read user's input into an array */ 
 void read(char *array) {
 	int i, c;
@@ -106,8 +114,7 @@ void interactive() {
 
 		
 		i = 0;
-		while(strcmp(arg[0], token[i]) != 0)
-			++i;
+		i = scan(arg[0], token, i);
 
 		switch(i) {
 			case SET: {
@@ -115,13 +122,12 @@ void interactive() {
 
 				else if(argc == 3) {
 					i = 6;
-					while(strcmp(arg[1], token[i]) != 0)
-						++i;
+					i = scan(arg[1], token, i);
 
 					switch(i) {
 						case INPUT: {
-							while(strcmp(arg[2], token[i]) != 0)
-								++i;
+							i = 8;
+							i = scan(arg[2], token, i);
 							switch(i) {
 								case BIN:
 									in = BIN;
@@ -142,9 +148,9 @@ void interactive() {
 							break;
 						}
 						case OUTPUT: {
-							 while(strcmp(arg[2], token[i]) != 0)
-								 ++i;
-							 switch(i) {
+							i = 8;
+							i = scan(arg[2], token, i);
+							switch(i) {
 								case BIN:
 									 out = BIN;
 									 break;

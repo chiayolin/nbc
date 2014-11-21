@@ -28,10 +28,12 @@ int otod(char octal[MAX], const int size);	/* Convert Oct. to Dec. */
 int dtob(int decimal, char binary[MAX]); 	/* Convert Dec. to Bin. */
 int dtoo(int decimal, char octal[MAX]);		/* Convert Dec. to Oct. */
 
-void read(char *array); /* Read user's input into an array */
 void printa(const char array[MAX], const int size); /* Print an array */
 void reverse(char array[MAX], const int size); /* Reverse an array */
+
 void interactive(); /* Interactive mode */
+int scan(char *array, char *tokens[], int index); /* Return index if there's token in array */
+void read(char *array); /* Read user's input into an array */
 void help(int type); /* Print help messages base on the varible 'type' */
 void info(); /* Print some information about this program */
 
