@@ -6,6 +6,7 @@
 SRC_PATH=./src/
 PGM_PATH=/usr/local/bin/
 PGM_NAME=dtob
+COM_NAME=gcc
 PGM_XIST=0
 COM_XIST=1
 
@@ -15,7 +16,7 @@ if [ -f $PGM_PATH$PGM_NAME ]; then
 fi
 
 # Check if gcc has been installed
-command -v gcc > /dev/null
+command -v $COM_NAME > /dev/null
 if [ $? != 0 ]; then
 	COM_XIST=0
 fi
@@ -42,7 +43,7 @@ fi
 
 # Exit if gcc does not exist on the system
 if [ $COM_XIST -eq 0 ]; then
-	echo "GNU C complier does not exist, aborting."
+	echo "$COM_NAME does not exist, aborting."
 	exit 1
 fi
 
