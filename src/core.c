@@ -110,7 +110,9 @@ void interactive() {
 	while(1) {
 		printf(">>> ");
 		read(input);
-		
+		if(input[0] == '\0')
+			continue; /* Continue if user did't enter nothing */
+
 		argc = 0;
 		for(i = 0, arg[i] = strtok(input, " "); 
 			arg[i] != NULL; arg[i] = strtok(NULL, " "))
@@ -134,7 +136,7 @@ void interactive() {
 				break;
 			case CONVERT:
 				if(argc < 2)
-					printf("error: expect a value\n");
+					printf("error: expect a value.\n");
 				else 
 					printf("value = %s\n", arg[1]);
 				break;
@@ -210,7 +212,8 @@ void c_set(char *arg[], const int argc, const char *tokens[]) {
 	}
 
 }
-; /* Display user's input/output settings */
+
+/* Display user's input/output settings */
 void c_state() {
 	int buff, i;
 	for(i = 0; i <= 1; ++i) {
