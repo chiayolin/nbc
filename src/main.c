@@ -61,7 +61,7 @@ int main(const int argc, char *argv[]) {
 				break;
 
 			case 'h':
-				help(1);
+				c_help(1);
 				break;
 
 			case 'i':
@@ -69,7 +69,7 @@ int main(const int argc, char *argv[]) {
 				break;
 
 			case 'm':
-				info();
+				c_info();
 				break;
 
 			default:
