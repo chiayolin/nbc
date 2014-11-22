@@ -26,6 +26,7 @@
 /* Store input/output settings as external variables */
 int input_num_base, output_num_base;
 
+
 /* Convert Dec. to Bin */
 int dtob(int decimal, char binary[MAX]) {
 	int i, size;
@@ -127,9 +128,45 @@ void interactive() {
 			case INFO:
 				info();
 				break;
-			case STATE:
-				printf("This is state\n");
+			case STATE: {
+				printf("input : ");
+				switch(input_num_base) {
+					case BIN:
+						printf("BIN\n");
+						break;
+					case OCT:
+						printf("OCT\n");
+						break;
+					case DEC:
+						printf("DEC\n");
+						break;
+					case HEX:
+						printf("HEX\n");
+						break;
+					default:
+						printf("not set\n");
+						break;
+				}
+				printf("output: ");
+				switch(output_num_base) {
+					case BIN:
+						printf("BIN\n");
+						break;
+					case OCT:
+						printf("OCT\n");
+						break;
+					case DEC:
+						printf("DEC\n");
+						break;
+					case HEX:
+						printf("HEX\n");
+						break;
+						default:
+							printf("not set\n");
+							break;
+				}
 				break;
+			}
 			case CONVERT:
 				if(argc < 2)
 					printf("error: expect a value\n");
