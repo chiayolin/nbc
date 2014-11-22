@@ -74,7 +74,7 @@ int main(const int argc, char *argv[]) {
 
 			default:
 				 printf("dtob: alas, invalid option '-%s' \n", argv[0]);
-				 help(0);
+				 c_help(0);
 				 break;
 		}
 	}
@@ -82,7 +82,7 @@ int main(const int argc, char *argv[]) {
 	/* Else, print the error message */
 	else {
 		printf("dtob: alas, syntax error :-(\n");
-		help(0);
+		c_help(0);
 		return 1;
 	}
 			
