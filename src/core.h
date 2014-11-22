@@ -22,6 +22,10 @@
 #define VERSION 1.1 /* Program version */
 #define MAX 1000 /* Maximum arrray size */
 
+enum { 
+	SET = 0, HELP, INFO, QUIT, STATE, CONVERT, 
+	INPUT, OUTPUT, BIN, OCT, DEC, HEX }; /* Numberic value for tokens */
+
 /* Number Bases Conversions */
 int btod(char binary[MAX], const int size); 	/* Convert Bin. to Dec. */
 int otod(char octal[MAX], const int size);	/* Convert Oct. to Dec. */
@@ -32,7 +36,8 @@ void printa(const char array[MAX], const int size); /* Print an array */
 void reverse(char array[MAX], const int size); /* Reverse an array */
 
 void interactive(); /* Interactive mode */
-int scan(char *array, char *tokens[], int index); /* Return index if there's token in array */
+int scan(const char *array, const char *tokens[], int index); /* Return index if there's token in array */
+void set(char *arg[], const int argc, const char *tokens[]); /* Function: SET */
 void read(char *array); /* Read user's input into an array */
 void help(int type); /* Print help messages base on the varible 'type' */
 void info(); /* Print some information about this program */

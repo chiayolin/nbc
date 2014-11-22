@@ -23,6 +23,9 @@
 #include <stdlib.h>
 #include <math.h>
 
+/* Store input/output settings as external variables */
+int input_num_base, output_num_base;
+
 /* Convert Dec. to Bin */
 int dtob(int decimal, char binary[MAX]) {
 	int i, size;
@@ -53,7 +56,7 @@ int btod(char binary[MAX], const int size) {
 }
 
 /* Scan an array, return index if there is a token */
-int scan(char *array, char *tokens[], int index) {
+int scan(const char *array, const char *tokens[], int index) {
 	while(strcmp(array, tokens[index]) != 0)
 		++index;
 
@@ -93,14 +96,13 @@ void reverse(char array[MAX], const int size) {
 
 /* Interactive mode */
 void interactive() {
-	int argc, i, in, out;
+	int argc, i;
+	extern int input_num_base, output_num_base;
 	char input[MAX], *arg[MAX];
-	char *token[] = {
+	const char *token[] = {
 		"set", "help", "info", "quit", "state", "convert",
 		"input", "output", "bin", "oct", "dec", "hex" };
-	enum { 
-		SET = 0, HELP, INFO, QUIT, STATE, CONVERT, 
-		INPUT, OUTPUT, BIN, OCT, DEC, HEX };
+	argc = i = input_num_base = output_num_base = 0;
 
 	printf("use h for help\n");
 	while(1) {
@@ -112,70 +114,13 @@ void interactive() {
 			arg[i] != NULL; arg[i] = strtok(NULL, " "))
 				++i, ++argc;
 
-		
 		i = 0;
 		i = scan(arg[0], token, i);
 
 		switch(i) {
-			case SET: {
-				if(argc < 3) printf("missing arugument(s)\n");
-
-				else if(argc == 3) {
-					i = 6;
-					i = scan(arg[1], token, i);
-
-					switch(i) {
-						case INPUT: {
-							i = 8;
-							i = scan(arg[2], token, i);
-							switch(i) {
-								case BIN:
-									in = BIN;
-									break;
-								case OCT:
-									in = OCT;
-									break;
-								case DEC:
-									in = DEC;
-									break;
-								case HEX:
-									in = HEX;
-									break;
-								default:
-									printf("number base not found\n");
-									break;
-							}
-							break;
-						}
-						case OUTPUT: {
-							i = 8;
-							i = scan(arg[2], token, i);
-							switch(i) {
-								case BIN:
-									 out = BIN;
-									 break;
-								case OCT:
-									 out = OCT;
-									 break;
-								case DEC:
-									 out = DEC;
-									 break;
-								case HEX:
-									 out = HEX;
-									 break;
-								default:
-									 printf("number base not found\n");
-									 break;
-							}
-							break; 
-						}
-						default:
-							printf("syntax error :-(\n");
-							break;
-					}	
-				}
+			case SET:
+				set(arg, argc, token);
 				break;
-			}
 			case HELP:
 				help(2);
 				break;
@@ -186,17 +131,82 @@ void interactive() {
 				printf("This is state\n");
 				break;
 			case CONVERT:
-				if(argc < 2) printf("expect a value\n");
-				else printf("value = %s\n", arg[1]);
+				if(argc < 2)
+					printf("error: expect a value\n");
+				else 
+					printf("value = %s\n", arg[1]);
 				break;
 			case QUIT:
 				return;
 				break;
 			default:
-				printf("%s: command not found\n", arg[0]);
+				printf("error: %s: command not found\n", arg[0]);
 				break;
 		}
 	}
+}
+
+/* Function: SET */
+void set(char *arg[], const int argc, const char *tokens[]) { 
+	extern int input_num_base, output_num_base;
+	int type, buff;
+
+	if(argc >= 4)
+		printf("error: too many arguments.\n");
+	else if(argc != 3)
+		printf("error: too few arguments.\n");
+	else {
+		/* Step 1. Read variable */
+		int i = 6;
+		i = scan(arg[1], tokens, i);
+		switch(i) {
+			case INPUT:
+				type = INPUT;
+				break;
+			case OUTPUT:
+				type = OUTPUT;
+				break;
+			default:
+				printf("error: '%s' is not a variable.\n", arg[1]);
+				break;
+		}
+
+		/* Step 2. Read number base */
+		i = 8;
+		i = scan(arg[2], tokens, i);
+		switch(i) {
+			case BIN:
+				buff = BIN;
+				break;
+			case OCT:
+				buff = OCT;
+				break;
+			case DEC:
+				buff = DEC;
+				break;
+			case HEX:
+				buff = HEX;
+				break;
+			default:
+				printf("error: '%s' is not a number base.\n", arg[2]);
+				break;
+		}
+
+		/* Step 3. Store result into the external variable */
+		switch(type) {
+			case INPUT:
+				input_num_base = buff;
+				break;
+			case OUTPUT:
+				output_num_base = buff;
+				break;
+			default:
+				break;
+		}
+
+		return;
+	}
+
 }
 
 /* Print help messages base on the varible 'type' */
