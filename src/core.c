@@ -26,7 +26,6 @@
 /* Store input/output settings as external variables */
 int input_num_base, output_num_base;
 
-
 /* Convert Dec. to Bin */
 int dtob(int decimal, char binary[MAX]) {
 	int i, size;
@@ -103,7 +102,9 @@ void interactive() {
 	const char *token[] = {
 		"set", "help", "info", "quit", "state", "convert",
 		"input", "output", "bin", "oct", "dec", "hex" };
-	argc = i = input_num_base = output_num_base = 0;
+
+	input_num_base = output_num_base = DEC;
+	argc = i = 0;
 
 	printf("use h for help\n");
 	while(1) {
@@ -120,53 +121,17 @@ void interactive() {
 
 		switch(i) {
 			case SET:
-				set(arg, argc, token);
+				c_set(arg, argc, token);
 				break;
 			case HELP:
-				help(2);
+				c_help(2);
 				break;
 			case INFO:
-				info();
+				c_info();
 				break;
-			case STATE: {
-				printf("input : ");
-				switch(input_num_base) {
-					case BIN:
-						printf("BIN\n");
-						break;
-					case OCT:
-						printf("OCT\n");
-						break;
-					case DEC:
-						printf("DEC\n");
-						break;
-					case HEX:
-						printf("HEX\n");
-						break;
-					default:
-						printf("not set\n");
-						break;
-				}
-				printf("output: ");
-				switch(output_num_base) {
-					case BIN:
-						printf("BIN\n");
-						break;
-					case OCT:
-						printf("OCT\n");
-						break;
-					case DEC:
-						printf("DEC\n");
-						break;
-					case HEX:
-						printf("HEX\n");
-						break;
-						default:
-							printf("not set\n");
-							break;
-				}
+			case STATE:
+				c_state();
 				break;
-			}
 			case CONVERT:
 				if(argc < 2)
 					printf("error: expect a value\n");
@@ -184,7 +149,7 @@ void interactive() {
 }
 
 /* Function: SET */
-void set(char *arg[], const int argc, const char *tokens[]) { 
+void c_set(char *arg[], const int argc, const char *tokens[]) { 
 	extern int input_num_base, output_num_base;
 	int type, buff;
 
@@ -245,9 +210,43 @@ void set(char *arg[], const int argc, const char *tokens[]) {
 	}
 
 }
+; /* Display user's input/output settings */
+void c_state() {
+	int buff, i;
+	for(i = 0; i <= 1; ++i) {
+		if(i == 0) {
+			printf("input:  ");
+			buff = input_num_base;
+		}
+		else { 
+			printf("output: ");
+			buff = output_num_base;
+		}
+
+		switch(buff) {
+			case BIN:
+				printf("BIN\n");
+				break;
+			case OCT:
+				printf("OCT\n");
+				break;
+			case DEC:
+				printf("DEC\n");
+				break;
+			case HEX:
+				printf("HEX\n");
+				break;
+			default:
+				printf("NULL\n");
+				break;
+		}
+	}
+
+	return;
+}
 
 /* Print help messages base on the varible 'type' */
-void help(int type) {
+void c_help(int type) {
 	const char h[] = "print this usage and text\n",
 	    	   d[] = "convert decimal to binary\n",
 	    	   b[] = "convert binary to decimal\n",
@@ -279,7 +278,7 @@ void help(int type) {
 }
 
 /* Print some information about this program */
-void info() {
+void c_info() {
 	printf("dtob (Version %.1f) Copyrights (C) 2014 Chiayo Lin\n", VERSION);
 	printf("Binary to Decimal and Decimal to Binary Converter\n\n");
 	printf("Source Code: <http://github.com/chiayolin/dtob/>\n");

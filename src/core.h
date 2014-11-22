@@ -36,10 +36,11 @@ void printa(const char array[MAX], const int size); /* Print an array */
 void reverse(char array[MAX], const int size); /* Reverse an array */
 
 void interactive(); /* Interactive mode */
-int scan(const char *array, const char *tokens[], int index); /* Return index if there's token in array */
-void set(char *arg[], const int argc, const char *tokens[]); /* Function: SET */
 void read(char *array); /* Read user's input into an array */
-void help(int type); /* Print help messages base on the varible 'type' */
-void info(); /* Print some information about this program */
+int scan(const char *array, const char *tokens[], int index); /* Return index if there's token in array */
+void c_set(char *arg[], const int argc, const char *tokens[]); /* Function: SET */
+void c_state(); /* Display user's settings */
+void c_help(int type); /* Print help messages base on the varible 'type' */
+void c_info(); /* Print some information about this program */
 
 #endif
