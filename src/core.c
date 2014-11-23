@@ -27,7 +27,7 @@
 int input_num_base, output_num_base;
 
 /* Convert Dec. to Bin */
-int dtob(int decimal, char binary[MAX]) {
+int dtob(int decimal, char *binary) {
 	int i, size;
 	if(decimal == 0) {
 		binary[0] = '0';
@@ -43,8 +43,11 @@ int dtob(int decimal, char binary[MAX]) {
 	return size; /* Return the size of array */
 }
 
+/* Convert Dec. to Oct. */
+int dtoo(int decimal, char *octal);
+
 /* Convert Bin. to Dec. */
-int btod(char binary[MAX], const int size) {
+int btod(char *binary, const int size) {
 	int i, decimal;
 	i = decimal = 0;
 
@@ -76,7 +79,7 @@ void read(char *array) {
 }
 
 /* Print an array */
-void printa(const char array[MAX], const int size) {
+void printa(const char *array, const int size) {
 	int i;
 	for(i = 0; i < size; i++)
 		printf("%c", array[i]);
@@ -84,7 +87,7 @@ void printa(const char array[MAX], const int size) {
 }
 
 /* Reverse an array */
-void reverse(char array[MAX], const int size) {
+void reverse(char *array, const int size) {
 	char temp[MAX];
 	int i;
 	for(i = 0; i < size; i++)

@@ -21,20 +21,20 @@
 
 
 #define VERSION "2.0(x)-nbc_develop" /* Program version */
-#define MAX 1000 /* Maximum arrray size */
+#define MAX 1000 		     /* Maximum arrray size */
 
 enum { 
 	SET = 0, HELP, INFO, QUIT, STATE, CONVERT, 
 	INPUT, OUTPUT, BIN, OCT, DEC, HEX }; /* Numberic value for tokens */
 
 /* Number Bases Conversions */
-int btod(char binary[MAX], const int size); 	/* Convert Bin. to Dec. */
-int otod(char octal[MAX], const int size);	/* Convert Oct. to Dec. */
-int dtob(int decimal, char binary[MAX]); 	/* Convert Dec. to Bin. */
-int dtoo(int decimal, char octal[MAX]);		/* Convert Dec. to Oct. */
+int btod(char *binary, const int size); 	/* Convert Bin. to Dec. */
+int otod(char *octal, const int size);		/* Convert Oct. to Dec. */
+int dtob(int decimal, char *binary);	 	/* Convert Dec. to Bin. */
+int dtoo(int decimal, char *octal);		/* Convert Dec. to Oct. */
 
-void printa(const char array[MAX], const int size); /* Print an array */
-void reverse(char array[MAX], const int size); /* Reverse an array */
+void printa(const char *array, const int size); /* Print an array */
+void reverse(char *array, const int size); /* Reverse an array */
 
 void interactive(); /* Interactive mode */
 void read(char *array); /* Read user's input into an array */
