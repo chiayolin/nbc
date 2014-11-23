@@ -19,7 +19,8 @@
 #ifndef CORE_H
 #define CORE_H
 
-#define VERSION 1.1 /* Program version */
+
+#define VERSION "2.0(x)-nbc_develop" /* Program version */
 #define MAX 1000 /* Maximum arrray size */
 
 enum { 
