@@ -44,7 +44,22 @@ int dtob(int decimal, char *binary) {
 }
 
 /* Convert Dec. to Oct. */
-int dtoo(int decimal, char *octal);
+int dtoo(int decimal, char *octal) {
+	int i, size;
+	if(decimal == 0) {
+		octal[0] = 0;
+		return 1;
+	} /* octal[0] = 0 when decimal is 0 */
+
+	for(i = 0, size = 0; decimal != 0; i++, size++) {
+		octal[i] = decimal % 8;
+		decimal = decimal / 8;
+	}
+
+	reverse(octal, size);
+	
+	return size;
+}
 
 /* Convert Bin. to Dec. */
 int btod(char *binary, const int size) {

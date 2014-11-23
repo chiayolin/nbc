@@ -19,7 +19,6 @@
 #ifndef CORE_H
 #define CORE_H
 
-
 #define VERSION "2.0(x)-nbc_develop" /* Program version */
 #define MAX 1000 		     /* Maximum arrray size */
 
@@ -36,6 +35,7 @@ int dtoo(int decimal, char *octal);		/* Convert Dec. to Oct. */
 void printa(const char *array, const int size); /* Print an array */
 void reverse(char *array, const int size); /* Reverse an array */
 
+/* Interactive Mode */
 void interactive(); /* Interactive mode */
 void read(char *array); /* Read user's input into an array */
 int scan(const char *array, const char *tokens[], int index); /* Return index if there's token in array */
