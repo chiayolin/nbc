@@ -3,4 +3,4 @@
 # Date  : Nov. 02, 2014
 
 dtob: main.c core.c
-	gcc -o dtob main.c core.c
+	gcc -o dtob main.c core.c -lm
