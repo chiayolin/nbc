@@ -55,11 +55,16 @@ int dtoo(int decimal, char *octal) {
 		octal[i] = decimal % 8;
 		decimal = decimal / 8;
 	}
-
 	reverse(octal, size);
 	
 	return size;
 }
+
+/* Convert Dec. to Hex. */
+int dtoh(int decimal, char *hexadecimal) {
+	int:w
+		 
+}	
 
 /* Convert Bin. to Dec. */
 int btod(char *binary, const int size) {
@@ -126,7 +131,7 @@ void interactive() {
 
 	printf("use h for help\n");
 	while(1) {
-		printf(">>> ");
+		printf(KMAG ">>> " RESET);
 		read(input);
 		if(input[0] == '\0')
 			continue; /* Continue if user did't enter nothing */
@@ -210,7 +215,7 @@ void c_set(char *arg[], const int argc, const char *tokens[]) {
 				buff = HEX;
 				break;
 			default:
-				printf("error: '%s' is not a number base.\n", arg[2]);
+				printf(KRED "error:" RESET " '%s' is not a number base.\n", arg[2]);
 				break;
 		}
 
@@ -236,29 +241,29 @@ void c_state() {
 	int buff, i;
 	for(i = 0; i <= 1; ++i) {
 		if(i == 0) {
-			printf("input:  ");
+			printf("input : ");
 			buff = input_num_base;
 		}
-		else { 
+		else {
 			printf("output: ");
 			buff = output_num_base;
 		}
 
 		switch(buff) {
 			case BIN:
-				printf("BIN\n");
+				printf(KGRN "BIN\n" RESET);
 				break;
 			case OCT:
-				printf("OCT\n");
+				printf(KGRN "OCT\n" RESET);
 				break;
 			case DEC:
-				printf("DEC\n");
+				printf(KGRN "DEC\n" RESET);
 				break;
 			case HEX:
-				printf("HEX\n");
+				printf(KGRN "HEX\n" RESET);
 				break;
 			default:
-				printf("NULL\n");
+				printf(KRED "NULL\n" RESET);
 				break;
 		}
 	}
@@ -300,13 +305,13 @@ void c_help(int type) {
 
 /* Print some information about this program */
 void c_info() {
-	printf("\ndtob %s\nCopyrights (C) 2014 Chiayo Lin\n", VERSION);
-	printf("Binary to Decimal and Decimal to Binary Converter\n\n");
+	printf("nbc version, %s\n", VERSION);
+	printf("Number Bases Converter (c) 2014 Chiayo Lin\n\n");
 	printf("Source Code: <http://github.com/chiayolin/dtob/>\n");
 	printf("Author     : Chiayo Lin <chiayo.lin@gmail.com>\n\n");
 	printf("License:\n");
 	printf("  This program comes with ABSOLUTELY NO WARRANTY.\n");
 	printf("  This is free software, and you are welcome to \n");
 	printf("  redistribute it under the terms of GPL v3.0.\n");
-	printf("  <http://www.gnu.org/licenses/>\n\n");
+	printf("  <http://www.gnu.org/licenses/>\n");
 }
