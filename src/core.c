@@ -167,7 +167,7 @@ void interactive() {
 				return;
 				break;
 			default:
-				printf("error: %s: command not found\n", arg[0]);
+				printf("error: `%s` command not found\n", arg[0]);
 				break;
 		}
 	}
@@ -215,7 +215,7 @@ void c_set(char *arg[], const int argc, const char *tokens[]) {
 				buff = HEX;
 				break;
 			default:
-				printf(KRED "error:" RESET " '%s' is not a number base.\n", arg[2]);
+				printf("error: '%s' is not a number base.\n", arg[2]);
 				break;
 		}
 
@@ -251,19 +251,19 @@ void c_state() {
 
 		switch(buff) {
 			case BIN:
-				printf(KGRN "BIN\n" RESET);
+				printf("BIN\n");
 				break;
 			case OCT:
-				printf(KGRN "OCT\n" RESET);
+				printf("OCT\n");
 				break;
 			case DEC:
-				printf(KGRN "DEC\n" RESET);
+				printf("DEC\n");
 				break;
 			case HEX:
-				printf(KGRN "HEX\n" RESET);
+				printf("HEX\n");
 				break;
 			default:
-				printf(KRED "NULL\n" RESET);
+				printf("NULL\n");
 				break;
 		}
 	}
