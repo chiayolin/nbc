@@ -61,10 +61,7 @@ int dtoo(int decimal, char *octal) {
 }
 
 /* Convert Dec. to Hex. */
-int dtoh(int decimal, char *hexadecimal) {
-	int:w
-		 
-}	
+int dtoh(int decimal, char *hexadecimal);
 
 /* Convert Bin. to Dec. */
 int btod(char *binary, const int size) {
@@ -216,6 +213,7 @@ void c_set(char *arg[], const int argc, const char *tokens[]) {
 				break;
 			default:
 				printf("error: '%s' is not a number base.\n", arg[2]);
+				return; /* Skip Step 3. if buff is not a number base */
 				break;
 		}
 
