@@ -23,7 +23,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-/* Store input/output settings as external variables */
+/* Store input/output settings as an external variables */
 int input_num_base, output_num_base;
 
 /* Convert Dec. to Bin */
@@ -126,7 +126,7 @@ void interactive() {
 	input_num_base = output_num_base = DEC;
 	argc = i = 0;
 
-	printf("use h for help\n");
+	printf("type help for help\n");
 	while(1) {
 		printf(KMAG ">>> " RESET);
 		read(input);
@@ -304,12 +304,12 @@ void c_help(int type) {
 /* Print some information about this program */
 void c_info() {
 	printf("nbc version, %s\n", VERSION);
-	printf("Number Bases Converter (c) 2014 Chiayo Lin\n\n");
+	printf("Number Base Converter (c) 2014 Chiayo Lin\n\n");
 	printf("Source Code: <http://github.com/chiayolin/dtob/>\n");
 	printf("Author     : Chiayo Lin <chiayo.lin@gmail.com>\n\n");
 	printf("License:\n");
-	printf("  This program comes with ABSOLUTELY NO WARRANTY.\n");
-	printf("  This is free software, and you are welcome to \n");
-	printf("  redistribute it under the terms of GPL v3.0.\n");
-	printf("  <http://www.gnu.org/licenses/>\n");
+	printf(" This program comes with ABSOLUTELY NO WARRANTY.\n");
+	printf(" This is free software, and you are welcome to \n");
+	printf(" redistribute it under the terms of GPL v3.0.\n");
+	printf(" <http://www.gnu.org/licenses/>\n");
 }
