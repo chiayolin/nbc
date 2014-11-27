@@ -23,7 +23,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-/* Store input/output settings as an external variables */
+/* Store input/output settings as external variables */
 int input_num_base, output_num_base;
 
 /* Convert Dec. to Bin */
