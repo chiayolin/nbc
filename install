@@ -1,11 +1,11 @@
 #!/bin/bash
-# This file is part of: dtob (Version 1.1)
+# This file is part of: nbc (Version 2.0)
 # Author: Chiayo Lin
-# Date  : Nov. 19, 2014
+# Date  : Nov. 28, 2014
 
 SRC_PATH=./src/
 PGM_PATH=/usr/local/bin/
-PGM_NAME=dtob
+PGM_NAME=nbc
 COM_NAME=gcc
 PGM_XIST=0
 COM_XIST=1

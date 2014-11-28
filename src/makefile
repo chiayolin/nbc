@@ -1,6 +1,6 @@
-# This file is part of: dtob (Version 1.0)
+# This file is part of: nbc (Version 2.0)
 # Author: Chiayo Lin
-# Date  : Nov. 02, 2014
+# Date  : Nov. 28, 2014
 
-dtob: main.c core.c
-	gcc -o dtob main.c core.c -lm
+nbc: main.c core.c
+	gcc -o nbc main.c core.c -lm

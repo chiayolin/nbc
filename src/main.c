@@ -35,15 +35,13 @@ int main(const int argc, char *argv[]) {
 	/* Read the options if argv[0][0] = '-' */
 	else if((*++argv)[0] == '-') {
 		int decimal, size;
-		char opt = *++argv[0], input[MAX];
+		char opt = *++argv[0], input[MAX], output[MAX];
 		switch(opt) {
 			case 'd':
 				if(argv[1] == NULL)
 					printf("agument to '-%s' is missing, expected a decimal number\n", argv[0]);
 				else {
-					decimal = atoi(argv[1]);
-					size = dtob(decimal, input);
-					printa(input, size);
+					convert(OCT, DEC, argv[1]);
 				}
 				break;
 
