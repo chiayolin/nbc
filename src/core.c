@@ -52,7 +52,7 @@ int dtoo(int decimal, char *octal) {
 	} /* octal[0] = 0 when decimal is 0 */
 
 	for(i = 0, size = 0; decimal != 0; i++, size++) {
-		octal[i] = decimal % 8;
+		octal[i] = (decimal % 8) + '0';
 		decimal = decimal / 8;
 	}
 	reverse(octal, size);
@@ -61,7 +61,23 @@ int dtoo(int decimal, char *octal) {
 }
 
 /* Convert Dec. to Hex. */
-int dtoh(int decimal, char *hexadecimal);
+int dtoh(int decimal, char *hexadecimal) {
+	int i, size;
+	if(decimal == 0) {
+		hexadecimal[0] = '0';
+		return 1;
+	}
+
+	for(i = 0, size = 0; decimal != 0; i++, size++) {
+		hexadecimal[i] = (decimal % 16) + '0';
+		if((hexadecimal[i] - '0') > 9)
+			hexadecimal[i] += 7;
+		decimal = decimal / 16;
+	}
+	reverse(hexadecimal, size);
+
+	return size;
+}
 
 /* Convert Bin. to Dec. */
 int btod(char *binary, const int size) {
@@ -128,7 +144,7 @@ void interactive() {
 
 	printf("type help for help\n");
 	while(1) {
-		printf(KMAG ">>> " RESET);
+		printf(KCYN ">>> " RESET);
 		read(input);
 		if(input[0] == '\0')
 			continue; /* Continue if user did't enter nothing */
@@ -308,8 +324,8 @@ void c_info() {
 	printf("Source Code: <http://github.com/chiayolin/dtob/>\n");
 	printf("Author     : Chiayo Lin <chiayo.lin@gmail.com>\n\n");
 	printf("License:\n");
-	printf(" This program comes with ABSOLUTELY NO WARRANTY.\n");
-	printf(" This is free software, and you are welcome to \n");
-	printf(" redistribute it under the terms of GPL v3.0.\n");
-	printf(" <http://www.gnu.org/licenses/>\n");
+	printf("  This program comes with ABSOLUTELY NO WARRANTY.\n");
+	printf("  This is free software, and you are welcome to \n");
+	printf("  redistribute it under the terms of GPL v3.0.\n");
+	printf("  <http://www.gnu.org/licenses/>\n");
 }
