@@ -27,10 +27,9 @@
 int input_num_base, output_num_base;
 
 /* Conversion interface */
-void convert(int from, int to, char *input, char *output) {
-	int com;
-	int size; 
-	com = 0;
+void convert(const int from, const int to, char *input) {
+	int com, size; 
+	com = size = 0;
 	size = strlen(input);
 
 	switch(from) {
@@ -41,30 +40,29 @@ void convert(int from, int to, char *input, char *output) {
 			com = otod(input, size);
 			break;
 		case DEC:
-			com = atoi(input, size);
-			break;
-		case HEX:
-			com = htod(input, size);
+			com = atoi(input);
 			break;
 	}
 
 	switch(to) {
 		case BIN:
-			size = dtob(com, output);
+			size = dtob(com, input);
 			break;
 		case OCT:
-			size = dtoo(com, output);
+			size = dtoo(com, input);
 			break;
 		case DEC:
-			strcpy(output, input);
-			size = strlen(output);
+			printf("%d\n", com);
+			return;
 			break;
 		case HEX:
-			dtoh(com, output);
+			size = dtoh(com, input);
 			break;
 	}
+
+	printa(input, size);
 	
-	printa(output, size);
+	return;
 }
 
 /* Convert Dec. to Bin */
@@ -129,6 +127,18 @@ int btod(char *binary, const int size) {
 	for(i = 0; i < size; i++)
 		decimal = decimal + ((binary[i] - '0') * (pow(2, i)));
 
+	return decimal;
+}
+
+/* Convert Oct. to Dec. */
+int otod(char *octal, const int size) {
+	int i, decimal;
+	i = decimal = 0;
+	
+	reverse(octal, size);
+	for(i = 0; i < size; i++)
+		decimal = decimal + ((octal[i] - '0') * (pow(8, i)));
+	
 	return decimal;
 }
 

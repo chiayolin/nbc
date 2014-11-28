@@ -44,7 +44,7 @@ int dtob(int decimal, char *binary);	 	/* Convert Dec. to Bin. */
 int dtoo(int decimal, char *octal);		/* Convert Dec. to Oct. */
 int dtoh(int decimal, char *hexadecimal); 	/* Convert Dec. to Hex. */
 
-void convert(int from, int to, char *input, char *output); /* Conversion interface */
+void convert(const int from, const int to, char *input); /* Conversion interface */
 void printa(const char *array, const int size); /* Print an array */
 void reverse(char *array, const int size); /* Reverse an array */
 
