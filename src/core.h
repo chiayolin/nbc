@@ -1,6 +1,6 @@
 /*
- * dtob - core.h
- * Binary to Decimal and Decimal to Binary Converter
+ * nbc - core.h
+ * Number Base Converter
  * Copyright (C) 2014  Chiayo Lin <chiayo.lin@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -37,9 +37,10 @@ enum {
 	SET = 0, HELP, INFO, QUIT, STATE, CONVERT, 
 	INPUT, OUTPUT, BIN, OCT, DEC, HEX }; /* Numberic value for tokens */
 
-/* Number Bases Conversions */
+/* Number Base Conversions */
 int btod(char *binary, const int size); 	/* Convert Bin. to Dec. */
 int otod(char *octal, const int size);		/* Convert Oct. to Dec. */
+int htod(char *hexadecimal, const int size);	/* Convert Hex. to Dec. */
 int dtob(int decimal, char *binary);	 	/* Convert Dec. to Bin. */
 int dtoo(int decimal, char *octal);		/* Convert Dec. to Oct. */
 int dtoh(int decimal, char *hexadecimal); 	/* Convert Dec. to Hex. */

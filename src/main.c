@@ -1,6 +1,6 @@
 /*
- * dtob - main.c
- * Binary to Decimal and Decimal to Binary Converter
+ * nbc - main.c
+ * Number Base Converter
  * Copyright (C) 2014  Chiayo Lin <chiayo.lin@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
