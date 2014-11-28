@@ -26,6 +26,47 @@
 /* Store input/output settings as external variables */
 int input_num_base, output_num_base;
 
+/* Conversion interface */
+void convert(int from, int to, char *input, char *output) {
+	int com;
+	int size; 
+	com = 0;
+	size = strlen(input);
+
+	switch(from) {
+		case BIN:
+			com = btod(input, size);
+			break;
+		case OCT:
+			com = otod(input, size);
+			break;
+		case DEC:
+			com = atoi(input, size);
+			break;
+		case HEX:
+			com = htod(input, size);
+			break;
+	}
+
+	switch(to) {
+		case BIN:
+			size = dtob(com, output);
+			break;
+		case OCT:
+			size = dtoo(com, output);
+			break;
+		case DEC:
+			strcpy(output, input);
+			size = strlen(output);
+			break;
+		case HEX:
+			dtoh(com, output);
+			break;
+	}
+	
+	printa(output, size);
+}
+
 /* Convert Dec. to Bin */
 int dtob(int decimal, char *binary) {
 	int i, size;
