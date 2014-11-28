@@ -1,6 +1,8 @@
-### Decimal to Binary and Binary to Decimal Converter
+#### ¡ Under Construction, do not believe anything you see !
 
-DTOB is an open source number bases converter written in C. You can use DTOB to convert binary numbers to decimal numbers, or decimal numbers to binary numbers. It provides two ways to convert number bases. You can either input numbers directly through the terminal, or use the interactive mode.
+### Number Base Converter
+
+The program, `nbc` is stands for the Number Base Converter. `nbc` is an open source multi-platforms number base converter that written in C. You can use `nbc` to convert between binary, octal, decimal, and hexadecimal number. The program itself also provides a powerful interactive mode, and command line options.
 
 ## Installing
 
