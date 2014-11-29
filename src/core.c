@@ -1,6 +1,6 @@
 /*
- * dtob - core.c
- * Binary to Decimal and Decimal to Binary Converter
+ * nbc - core.c
+ * Number Base Converter
  * Copyright (C) 2014  Chiayo Lin <chiayo.lin@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -114,7 +114,7 @@ int dtoh(int decimal, char *hexadecimal) {
 	for(i = 0, size = 0; decimal != 0; i++, size++) {
 		hexadecimal[i] = (decimal % 16) + '0';
 		if((hexadecimal[i] - '0') > 9)
-			hexadecimal[i] += 7;
+			hexadecimal[i] += 39;
 		decimal = decimal / 16;
 	}
 	reverse(hexadecimal, size);
@@ -252,7 +252,10 @@ void interactive() {
 				return;
 				break;
 			default:
-				printf("error: `%s` command not found\n", arg[0]);
+				if(argc != 1)
+					printf("error: `%s` command not found\n", arg[0]);
+				else 
+					convert(input_num_base, output_num_base, arg[0]);
 				break;
 		}
 	}
