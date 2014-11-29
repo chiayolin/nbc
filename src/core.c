@@ -25,7 +25,7 @@
 #include <math.h>
 
 /* Store input/output settings as external variables */
-int input_num_base, output_num_base;
+int InNumBase, OutNumBase;
 
 /* Conversion interface */
 void convert(const int from, const int to, char *input) {
@@ -205,13 +205,13 @@ void reverse(char *array, const int size) {
 /* Interactive mode */
 void interactive() {
 	int argc, i;
-	extern int input_num_base, output_num_base;
+	extern int InNumBase, OutNumBase;
 	char input[MAX], *arg[MAX];
 	const char *token[] = {
-		"set", "help", "info", "quit", "state", "convert",
+		"set", "help", "info", "quit", "state", "swap",
 		"input", "output", "bin", "oct", "dec", "hex" };
 
-	input_num_base = output_num_base = DEC;
+	InNumBase = OutNumBase = DEC;
 	argc = i = 0;
 
 	printf("type help for help\n");
@@ -242,11 +242,8 @@ void interactive() {
 			case STATE:
 				c_state();
 				break;
-			case CONVERT:
-				if(argc < 2)
-					printf("error: expect a value.\n");
-				else 
-					printf("value = %s\n", arg[1]);
+			case SWAP:
+				c_swap();
 				break;
 			case QUIT:
 				return;
@@ -255,7 +252,7 @@ void interactive() {
 				if(argc != 1)
 					printf("error: `%s` command not found\n", arg[0]);
 				else 
-					convert(input_num_base, output_num_base, arg[0]);
+					convert(InNumBase, OutNumBase, arg[0]);
 				break;
 		}
 	}
@@ -263,7 +260,7 @@ void interactive() {
 
 /* Function: SET */
 void c_set(char *arg[], const int argc, const char *tokens[]) { 
-	extern int input_num_base, output_num_base;
+	extern int InNumBase, OutNumBase;
 	int type, buff;
 
 	if(argc >= 4)
@@ -311,10 +308,10 @@ void c_set(char *arg[], const int argc, const char *tokens[]) {
 		/* Step 3. Store result into the external variable */
 		switch(type) {
 			case INPUT:
-				input_num_base = buff;
+				InNumBase = buff;
 				break;
 			case OUTPUT:
-				output_num_base = buff;
+				OutNumBase = buff;
 				break;
 			default:
 				break;
@@ -331,11 +328,11 @@ void c_state() {
 	for(i = 0; i <= 1; ++i) {
 		if(i == 0) {
 			printf("input : ");
-			buff = input_num_base;
+			buff = InNumBase;
 		}
 		else {
 			printf("output: ");
-			buff = output_num_base;
+			buff = OutNumBase;
 		}
 
 		switch(buff) {
@@ -356,6 +353,16 @@ void c_state() {
 				break;
 		}
 	}
+
+	return;
+}
+
+void c_swap() {
+	extern int InNumBase, OutNumBase;
+	int temp;
+	temp = OutNumBase;
+	OutNumBase = InNumBase;
+	InNumBase = temp;
 
 	return;
 }
@@ -382,12 +389,13 @@ void c_help(int type) {
 			break;
 
 		case 2:
-			printf("list of options:\n");
-			printf("  h    %s", h);
-			printf("  d    %s", d);
-			printf("  b    %s", b);
-			printf("  m    %s", m);
-			printf("  q    quit\n");
+			printf("list of commands:\n");
+			printf("  help    print this help message.\n");
+			printf("  set     set input/ouput base.\n");
+			printf("  state   display input/output setting.\n");
+			printf("  swap    swap input/output base.\n");
+			printf("  info    print the information.\n");
+			printf("  quit    quit the program.\n");
 			break;
 	}
 }
@@ -395,6 +403,7 @@ void c_help(int type) {
 /* Print some information about this program */
 void c_info() {
 	printf("nbc version, %s\n", VERSION);
+	printf("complied on, %s %s\n\n", __TIME__, __DATE__);
 	printf("Number Base Converter (c) 2014 chiayolin.org\n");
 	printf("Source Code: <http://github.com/chiayolin/dtob/>\n");
 	printf("Author     : Chiayo Lin <chiayo.lin@gmail.com>\n");

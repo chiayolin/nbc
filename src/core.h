@@ -34,7 +34,7 @@
 #define RESET "\033[0m"  /* Reset */
 
 enum { 
-	SET = 0, HELP, INFO, QUIT, STATE, CONVERT, 
+	SET = 0, HELP, INFO, QUIT, STATE, SWAP, 
 	INPUT, OUTPUT, BIN, OCT, DEC, HEX }; /* Numberic value for tokens */
 
 /* Number Base Conversions */
@@ -54,6 +54,7 @@ void interactive(); /* Interactive mode */
 void read(char *array); /* Read user's input into an array */
 int scan(const char *array, const char *tokens[], int index); /* Return index if there's token in array */
 void c_set(char *arg[], const int argc, const char *tokens[]); /* Function: SET */
+void c_swap(); /* Swap user's setting */
 void c_state(); /* Display user's settings */
 void c_help(int type); /* Print help messages base on the varible 'type' */
 void c_info(); /* Print some information about this program */
