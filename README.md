@@ -1,4 +1,4 @@
-#### ¡ Under Construction, do not believe anything you see !
+#### Under Construction, so do not believe anything you see !
 
 ### Number Base Converter
 
