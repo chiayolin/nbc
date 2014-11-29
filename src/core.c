@@ -21,6 +21,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 #include <math.h>
 
 /* Store input/output settings as external variables */
@@ -41,6 +42,9 @@ void convert(const int from, const int to, char *input) {
 			break;
 		case DEC:
 			com = atoi(input);
+			break;
+		case HEX:
+			com = htod(input, size);
 			break;
 	}
 
@@ -139,6 +143,23 @@ int otod(char *octal, const int size) {
 	for(i = 0; i < size; i++)
 		decimal = decimal + ((octal[i] - '0') * (pow(8, i)));
 	
+	return decimal;
+}
+
+/* Convert Hex. to Dec. */
+int htod(char *hexadecimal, const int size) {
+	int i, decimal, type;
+	i = decimal = type = 0;
+
+	/* x = from char to int, y = from char(letter) to int */
+	int type_x = '0', type_y = 'W';
+	
+	reverse(hexadecimal, size);
+	for(i = 0; i < size; i++) {
+		(!isdigit(hexadecimal[i])) ? (type = type_y) : (type = type_x);
+		decimal = decimal + ((hexadecimal[i] - type) * (pow(16, i)));
+	}
+
 	return decimal;
 }
 
@@ -371,12 +392,8 @@ void c_help(int type) {
 /* Print some information about this program */
 void c_info() {
 	printf("nbc version, %s\n", VERSION);
-	printf("Number Base Converter (c) 2014 Chiayo Lin\n\n");
+	printf("Number Base Converter (c) 2014 chiayolin.org\n");
 	printf("Source Code: <http://github.com/chiayolin/dtob/>\n");
-	printf("Author     : Chiayo Lin <chiayo.lin@gmail.com>\n\n");
-	printf("License:\n");
-	printf("  This program comes with ABSOLUTELY NO WARRANTY.\n");
-	printf("  This is free software, and you are welcome to \n");
-	printf("  redistribute it under the terms of GPL v3.0.\n");
-	printf("  <http://www.gnu.org/licenses/>\n");
+	printf("Author     : Chiayo Lin <chiayo.lin@gmail.com>\n");
+	printf("License    : GPL 3.0\n");
 }
