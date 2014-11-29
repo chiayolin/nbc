@@ -41,7 +41,7 @@ int main(const int argc, char *argv[]) {
 				if(argv[1] == NULL)
 					printf("agument to '-%s' is missing, expected a decimal number\n", argv[0]);
 				else {
-					convert(OCT, DEC, argv[1]);
+					convert(DEC, BIN, argv[1]);
 				}
 				break;
 
