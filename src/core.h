@@ -29,7 +29,7 @@
 #define KYEL  "\x1B[33m" /* Yellow */
 #define KBLU  "\x1B[34m" /* Blue */
 #define KMAG  "\x1B[35m" /* Magenta */
-#define KCYN  "\x1B[36m" /* Cyan */
+#define KCYN  "\x1B[96m" /* Cyan */
 #define KWHT  "\x1B[37m" /* White */
 #define RESET "\033[0m"  /* Reset */
 
