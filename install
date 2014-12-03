@@ -41,7 +41,7 @@ if [ $PGM_XIST -eq 1 ]; then
 	exit 0
 fi
 
-# Exit if gcc does not exist on the system
+# Exit if compiler does not exist on the system
 if [ $COM_XIST -eq 0 ]; then
 	echo "$COM_NAME does not exist, aborting."
 	exit 1
