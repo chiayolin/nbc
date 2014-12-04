@@ -377,10 +377,10 @@ void c_help(int type) {
 
 	switch(type) {
 		case 0:
-			printf("use dtob -h for help\n");
+			puts("use dtob -h for help");
 			break;
 		case 1:
-			printf("usage: dtob [options] [value ...]\n");
+			puts("usage: dtob [options] [value ...]");
 			printf("  -h      %s", h);
 			printf("  -d      %s", d);
 			printf("  -b      %s", b);
@@ -389,13 +389,13 @@ void c_help(int type) {
 			break;
 
 		case 2:
-			printf("list of commands:\n");
-			printf("  help    print this help message.\n");
-			printf("  set     set input/ouput base.\n");
-			printf("  state   display input/output setting.\n");
-			printf("  swap    swap input/output base.\n");
-			printf("  info    print the information.\n");
-			printf("  quit    quit the program.\n");
+			puts("list of commands:");
+			puts("  help    print this help message.");
+			puts("  set     set input/ouput base.");
+			puts("  state   display input/output setting.");
+			puts("  swap    swap input/output base.");
+			puts("  info    print the information.");
+			puts("  quit    quit the program.");
 			break;
 	}
 }
@@ -404,8 +404,8 @@ void c_help(int type) {
 void c_info() {
 	printf("nbc version, %s\n", VERSION);
 	printf("complied on, %s %s\n\n", __TIME__, __DATE__);
-	printf("Number Base Converter (c) 2014 chiayolin.org\n");
-	printf("Source Code: <http://github.com/chiayolin/dtob/>\n");
-	printf("Author     : Chiayo Lin <chiayo.lin@gmail.com>\n");
-	printf("License    : GPL 3.0\n");
+	puts("Number Base Converter (c) 2014 chiayolin.org");
+	puts("Source Code: <http://github.com/chiayolin/dtob/>");
+	puts("Author     : Chiayo Lin <chiayo.lin@gmail.com>");
+	puts("License    : GPL 3.0");
 }
