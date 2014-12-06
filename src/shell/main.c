@@ -15,72 +15,41 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
- 
-#include "core.h"
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <math.h>
+#include "../core/core.h"
+#include "./inte.h"
 
 int main(const int argc, char *argv[]) {
 	int binary[MAX], decimal;
 	int size;
-	
-	/* Enter interactive mode if there are no command line options */
-	if(argc == 1) {
+
+	if(argc == 1)
 		interactive();
-	} 
-	
+
 	/* Read the options if argv[0][0] = '-' */
 	else if((*++argv)[0] == '-') {
-		int decimal, size;
+		int i, size;
 		char opt = *++argv[0], input[MAX], output[MAX];
 		switch(opt) {
-			case 'd':
-				if(argv[1] == NULL)
-					printf("agument to '-%s' is missing, expected a decimal number\n", argv[0]);
-				else {
-					convert(DEC, BIN, argv[1]);
-				}
-				break;
-
-			case 'b':
-				if(argv[1] == NULL)
-					printf("agument to '-%s' is missing, expected a binary number\n", argv[0]);
-				else {
-					size = strlen(argv[1]);
-					int i;
-					for(i = 0; i < size; i++)
-						input[i] = argv[1][i]; 
-					decimal = btod(input, size);
-					printf("%d\n", decimal);
-				}
-				break;
-
-			case 'h':
-				c_help(1);
-				break;
-
 			case 'i':
-				interactive();
+				if(argv[1] == NULL)
+					printf("agument to '-%s' is missing, expected a number\n", argv[0]);
+				else {
+					size = convert(HEX, DEC, argv[1], output);
+					for(i = 0; i < size; i++)
+						printf("%c", output[i]);
+					puts("");
+				}
 				break;
-
-			case 'm':
-				c_info();
-				break;
-
 			default:
-				 printf("dtob: alas, invalid option '-%s' \n", argv[0]);
-				 c_help(0);
+				 printf("nbc: alas, invalid option '-%s' \n use -d\n", argv[0]);
 				 break;
 		}
 	}
 	
 	/* Else, print the error message */
 	else {
-		printf("dtob: alas, syntax error :-(\n");
-		c_help(0);
+		printf("nbc: alas, syntax error :-(\n");
 		return 1;
 	}
 			

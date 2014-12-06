@@ -1,5 +1,5 @@
 /*
- * nbc - core.h
+ * nbc - inte.h - interactive mode
  * Number Base Converter
  * Copyright (C) 2014  Chiayo Lin <chiayo.lin@gmail.com>
  *
@@ -16,11 +16,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CORE_H
-#define CORE_H
+#ifndef INTE_H
+#define INTE_H
 
 #define VERSION "2.0(x)-nbc_develop" /* Program version */
-#define MAX 1000 		     /* Maximum arrray size */
 
 /* Define colors */
 #define KNRM  "\x1B[0m"	 /* Normal */
@@ -33,30 +32,16 @@
 #define KWHT  "\x1B[37m" /* White */
 #define RESET "\033[0m"  /* Reset */
 
-enum { 
-	SET = 0, HELP, INFO, QUIT, STATE, SWAP, 
-	INPUT, OUTPUT, BIN, OCT, DEC, HEX }; /* Numberic value for tokens */
-
-/* Number Base Conversions */
-int btod(char *binary, const int size); 	/* Convert Bin. to Dec. */
-int otod(char *octal, const int size);		/* Convert Oct. to Dec. */
-int htod(char *hexadecimal, const int size);	/* Convert Hex. to Dec. */
-int dtob(int decimal, char *binary);	 	/* Convert Dec. to Bin. */
-int dtoo(int decimal, char *octal);		/* Convert Dec. to Oct. */
-int dtoh(int decimal, char *hexadecimal); 	/* Convert Dec. to Hex. */
-
-void convert(const int from, const int to, char *input); /* Conversion interface */
-void printa(const char *array, const int size); /* Print an array */
-void reverse(char *array, const int size); /* Reverse an array */
-
-/* Interactive Mode */
-void interactive(); /* Interactive mode */
+int scan(const char *array, const char *tokens[]); /* Return index if there's token in array */
 void read(char *array); /* Read user's input into an array */
-int scan(const char *array, const char *tokens[], int index); /* Return index if there's token in array */
+void printa(const char *array, const int size); /* Print an array */
 void c_set(char *arg[], const int argc, const char *tokens[]); /* Function: SET */
 void c_swap(); /* Swap user's setting */
 void c_state(); /* Display user's settings */
 void c_help(int type); /* Print help messages base on the varible 'type' */
 void c_info(); /* Print some information about this program */
+
+/* External Interface */
+void interactive(); /* Interactive mode */
 
 #endif
