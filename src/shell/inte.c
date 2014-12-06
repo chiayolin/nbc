@@ -19,6 +19,9 @@
 #include "../core/core.h"
 #include "./inte.h"
 
+#include <string.h>
+#include <stdio.h>
+
 /* Store input/output settings as external variables */
 int InNumBase, OutNumBase;
 
@@ -115,9 +118,9 @@ void c_set(char *arg[], const int argc, const char *tokens[]) {
 	int type, buff;
 
 	const char *token[] = {
-		"input", "output", "bin", "oct", "dec", "hex" };
+		"input", "-i", "output", "-o", "bin", "oct", "dec", "hex" };
 	enum { 
-		INPUT, OUTPUT, C_BIN, C_OCT, C_DEC, C_HEX }; /* Numberic value for tokens */
+		INPUT, I, OUTPUT, O, C_BIN, C_OCT, C_DEC, C_HEX }; /* Numberic value for tokens */
 
 
 	if(argc >= 4)
@@ -129,10 +132,10 @@ void c_set(char *arg[], const int argc, const char *tokens[]) {
 		int i;
 		i = scan(arg[1], token);
 		switch(i) {
-			case INPUT:
+			case INPUT: case I:
 				type = INPUT;
 				break;
-			case OUTPUT:
+			case OUTPUT: case O:
 				type = OUTPUT;
 				break;
 			default:
