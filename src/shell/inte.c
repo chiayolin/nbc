@@ -196,19 +196,19 @@ void c_state() {
 
 		switch(buff) {
 			case BIN:
-				printf("BIN\n");
+				puts("BIN");
 				break;
 			case OCT:
-				printf("OCT\n");
+				puts("OCT");
 				break;
 			case DEC:
-				printf("DEC\n");
+				puts("DEC");
 				break;
 			case HEX:
-				printf("HEX\n");
+				puts("HEX");
 				break;
 			default:
-				printf("NULL\n");
+				puts("ERR");
 				break;
 		}
 	}
