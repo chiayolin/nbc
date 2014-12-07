@@ -23,13 +23,11 @@ Installing
 5. `./install`
 
 Usage
-=====
+-----
 
-Command Line
-------------
+###Command Line
 
-Interactive Mode
-----------------
+###Interactive Mode
 
 License
 -------
