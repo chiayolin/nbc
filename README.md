@@ -1,11 +1,12 @@
 #### Under Construction, Do Not Believe Anything You See !
 
-### Number Base Converter
+Number Base Converter
+=====================
 
 The program, `nbc` is stands for the Number Base Converter. `nbc` is an open source multi-platforms number base converter that written in C. You can use `nbc` to convert between binary, octal, decimal, and hexadecimal number. The program itself also provides a powerful interactive mode, and command line options.
 
-## Installing
-
+Installing
+----------
 ### Linux and Mac OS X
 1. Open your terminal
 2. `git clone http://github.com/chiayolin/nbc`
@@ -22,13 +23,14 @@ The program, `nbc` is stands for the Number Base Converter. `nbc` is an open sou
 
 ## Usage
 
-### Command Line
+Command Line
+------------
 
+Interactive Mode
+----------------
 
-### Interactive Mode
-
-
-## License
+License
+-------
 
 Copyright (C) 2014  Chiayo Lin <chiayo.lin@gmail.com>
 
