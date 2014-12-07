@@ -3,7 +3,7 @@
 Number Base Converter
 =====================
 
-The program, `nbc` is stands for the Number Base Converter. `nbc` is an open source multi-platforms number base converter that written in C. You can use `nbc` to convert between binary, octal, decimal, and hexadecimal number. The program itself also provides a powerful interactive mode, and command line options.
+The program, `nbc` is stands for the Number Base Converter. `nbc` is an open source multi-platforms number base converter that written in C. You can use `nbc` to convert between binary, octal, decimal, and hexadecimal number. The program itself also provides a powerful interactive mode, as well as command line options.
 
 Installing
 ----------
