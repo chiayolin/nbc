@@ -7,6 +7,7 @@ The program, `nbc` is stands for the Number Base Converter. `nbc` is an open sou
 
 Installing
 ----------
+
 ### Linux and Mac OS X
 1. Open your terminal
 2. `git clone http://github.com/chiayolin/nbc`
@@ -21,7 +22,8 @@ Installing
 4. `chmod +x install`
 5. `./install`
 
-## Usage
+Usage
+=====
 
 Command Line
 ------------
