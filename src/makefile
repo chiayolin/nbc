@@ -2,5 +2,5 @@
 # Author: Chiayo Lin
 # Date  : Nov. 28, 2014
 
-nbc: main.c core.c
-	gcc -o nbc main.c core.c -lm
+nbc: main.c inte.c core.c
+	gcc -o nbc shell/main.c shell/inte.c core/core.c -lm
