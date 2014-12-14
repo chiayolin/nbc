@@ -15,7 +15,7 @@ if [ -f $PGM_PATH$PGM_NAME ]; then
 	PGM_XIST=1
 fi
 
-# Check if gcc has been installed
+# Check if complier has been installed
 command -v $COM_NAME > /dev/null
 if [ $? != 0 ]; then
 	COM_XIST=0
