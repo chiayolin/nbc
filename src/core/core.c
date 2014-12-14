@@ -1,5 +1,5 @@
 /*
- * nbc - core.c
+ * nbc - core.c - conversion core implementation.
  * Number Base Converter
  * Copyright (C) 2014  Chiayo Lin <chiayo.lin@gmail.com>
  *
@@ -47,10 +47,9 @@ int pre_process(char *input, const int size, const int from) {
 
 /* Processes *common* */
 int pos_process(char *output, int common, const int to) {
-	if(common == 0) {
-		output[0] = '0';
-		return 1;
-	} /* terminate with output = '0' when common is 0 */
+	if(common == 0)
+		/* terminate with output = '0' when common is 0 */
+		return (output[0] = '0') != '0' ? 0 : 1;
 
 	int i, size, base = to;
 	bool ishex = (base != HEX) ? 0 : 1;
