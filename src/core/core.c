@@ -20,8 +20,8 @@
 
 /* External interface */
 int convert(const int from, const int to, char *input, char *output) {
-	int common = pre_process(input, strlen(input), from);
-	int size = pos_process(output, common, to);
+	int size = pos_process(output, 
+		pre_process(input, strlen(input), from), to);
 
 	return size; /* Return the size of output[] */
 }
