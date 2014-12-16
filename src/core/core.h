@@ -1,5 +1,5 @@
 /*
- * nbc - core.h
+ * nbc - core.h - conversion core public header.
  * Number Base Converter
  * Copyright (C) 2014  Chiayo Lin <chiayo.lin@gmail.com>
  *
