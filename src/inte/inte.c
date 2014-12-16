@@ -262,7 +262,7 @@ void c_info() {
 	printf("nbc version, %s\n", VERSION);
 	printf("complied on, %s %s\n\n", __TIME__, __DATE__);
 	puts("Number Base Converter (c) 2014 chiayolin.org");
-	puts("Source Code: <http://github.com/chiayolin/dtob/>");
+	puts("Source Code: <http://github.com/chiayolin/nbc/>");
 	puts("Author     : Chiayo Lin <chiayo.lin@gmail.com>");
 	puts("License    : GPL 3.0");
 }
