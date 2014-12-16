@@ -30,19 +30,19 @@ int main(const int argc, char *argv[]) {
 		int i, size;
 		char opt = *++argv[0], input[MAX], output[MAX];
 		switch(opt) {
-			case 'i':
-				if(argv[1] == NULL)
-					printf("agument to '-%s' is missing, expected a number\n", argv[0]);
-				else {
-					size = convert(HEX, DEC, argv[1], output);
-					for(i = 0; i < size; i++)
-						printf("%c", output[i]);
-					puts("");
-				}
-				break;
-			default:
-				 printf("nbc: alas, invalid option '-%s' \n use -d\n", argv[0]);
-				 break;
+		case 'i':
+			if(argv[1] == NULL)
+				printf("agument to '-%s' is missing, expected a number\n", argv[0]);
+			else {
+				size = convert(HEX, DEC, argv[1], output);
+				for(i = 0; i < size; i++)
+					printf("%c", output[i]);
+				puts("");
+			}
+			break;
+		default:
+			printf("nbc: alas, invalid option '-%s' \n use -d\n", argv[0]);
+			break;
 		}
 	}
 	
