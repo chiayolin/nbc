@@ -1,5 +1,5 @@
 /*
- * nbc - core.h
+ * nbc - ihub.h - the include hub
  * Number Base Converter
  * Copyright (C) 2014  Chiayo Lin <chiayo.lin@gmail.com>
  *
@@ -16,15 +16,16 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CORE_H
-#define CORE_H
+#ifndef IHUB_H
+#define IHUB_H
 
-#define BIN 2
-#define OCT 8
-#define DEC 10
-#define HEX 16
 
-/* External Interface */
-int convert(const int from, const int to, char *input, char *output);
+#include <ctype.h>
+#include <stdio.h>
+#include <string.h>
+#include "./core/core.h"
+#include "./inte/inte.h"
+
+#define MAX 1000
 
 #endif

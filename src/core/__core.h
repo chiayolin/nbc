@@ -16,15 +16,20 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CORE_H
-#define CORE_H
+#ifndef __CORE_H
+#define __CORE_H
 
-#define BIN 2
-#define OCT 8
-#define DEC 10
-#define HEX 16
+#define MAX 1024
 
-/* External Interface */
-int convert(const int from, const int to, char *input, char *output);
+#include <stdbool.h>
+#include <string.h>
+#include <stdio.h>
+#include <ctype.h>
+#include <math.h>
+
+/* Number Base Conversions */
+int pre_process(char *input, const int size, const int from); /* Generates *common* */
+int pos_process(char *output, int common, const int to); /* Processes *common* */
+void reverse(char *array, const int size); /* Reverse an array */
 
 #endif

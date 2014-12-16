@@ -1,5 +1,5 @@
 /*
- * nbc - inte.c - interactive mode
+ * nbc - shell.c - interactive mode
  * Number Base Converter
  * Copyright (C) 2014  Chiayo Lin <chiayo.lin@gmail.com>
  *
@@ -17,10 +17,8 @@
  */
 
 #include "../core/core.h"
+#include "./__inte.h"
 #include "./inte.h"
-
-#include <string.h>
-#include <stdio.h>
 
 /* Store input/output settings as external variables */
 int InNumBase, OutNumBase;

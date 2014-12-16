@@ -1,5 +1,5 @@
 /*
- * nbc - inte.h - interactive mode
+ * nbc - __shell.h - interactive mode
  * Number Base Converter
  * Copyright (C) 2014  Chiayo Lin <chiayo.lin@gmail.com>
  *
@@ -16,11 +16,17 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef INTE_H
-#define INTE_H
+#ifndef __INTE_H
+#define __INTE_H
 
-#define VERSION "2.0(x)-nbc_develop" /* Program version */
+#include <stdbool.h>
+#include <string.h>
+#include <stdio.h>
+#include <ctype.h>
+#include <math.h>
 
+#define MAX 1000
+ 
 /* Define colors */
 #define KNRM  "\x1B[0m"	 /* Normal */
 #define KRED  "\x1B[31m" /* Red */
@@ -40,8 +46,5 @@ void c_swap(); /* Swap user's setting */
 void c_state(); /* Display user's settings */
 void c_help(int type); /* Print help messages base on the varible 'type' */
 void c_info(); /* Print some information about this program */
-
-/* External Interface */
-void interactive(); /* Interactive mode */
 
 #endif

@@ -16,8 +16,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "../core/core.h"
-#include "./inte.h"
+#include "./ihub.h"
 
 int main(const int argc, char *argv[]) {
 	int binary[MAX], decimal;

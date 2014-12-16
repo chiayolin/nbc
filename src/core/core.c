@@ -17,6 +17,7 @@
  */
 
 #include "./core.h"
+#include "./__core.h"
 
 /* External interface */
 int convert(const int from, const int to, char *input, char *output) {

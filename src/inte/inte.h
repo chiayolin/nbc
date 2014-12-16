@@ -1,5 +1,5 @@
 /*
- * nbc - core.h
+ * nbc - inte.h - interactive mode
  * Number Base Converter
  * Copyright (C) 2014  Chiayo Lin <chiayo.lin@gmail.com>
  *
@@ -16,15 +16,13 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CORE_H
-#define CORE_H
+#ifndef INTE_H
+#define INTE_H
 
-#define BIN 2
-#define OCT 8
-#define DEC 10
-#define HEX 16
+/* Program version */
+#define VERSION "2.0(x)-nbc_develop" 
 
 /* External Interface */
-int convert(const int from, const int to, char *input, char *output);
+void interactive();
 
 #endif
