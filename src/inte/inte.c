@@ -29,10 +29,8 @@ int scan(const char *array, const char *tokens[]) {
 	
 	while(strcmp(array, tokens[index]) != 0 && !IS_END)
 			++index;
-	if(IS_END)
-		return DEFAULT;
-
-	return index;
+	
+	return IS_END ? DEFAULT : index;
 }
 
 /* Read user's input into an array */ 
@@ -69,7 +67,7 @@ void interactive() {
 	InNumBase = OutNumBase = DEC;
 	argc = i = 0;
 
-	printf("type help for help\n");
+	printf("hey, for help type `help`\n");
 	while(1) {
 		printf(KCYN ">>> " RESET);
 		read(input);
@@ -235,33 +233,44 @@ void c_help(char *arg[], const int argc) {
 	enum {
 		HELP = 0, SET, STATE, SWAP, INFO, QUIT };
 
-	int type = (argc != 1) ? scan(arg[1], token) : 9;
+	int type = (argc != 1) ? scan(arg[1], token) : DEFAULT;
 
 	switch(type) {
-	case HELP:
-		puts("usage: help [commands]");
-		break;
 	case SET:
-		puts("usage: set [variables] [values]");
+		puts("set - set input/output base.");
+		puts("usage: set [options [values]]");
+		puts("options:");
+		puts("   -i, input   <base>");
+		puts("   -o, output  <base>");
+		puts("values:");
+		puts("   bin, oct, dec, hex");
 		break;
 	case STATE:
+		puts("state - display input/output setting.");
 		puts("usage: state");
 		break;
 	case SWAP:
+		puts("swap - swap input/output base.");
 		puts("usage: swap");
 		break;
 	case INFO:
+		puts("info - print prog's infomation.");
 		puts("usage: info");
 		break;
-	default:
+	case QUIT:
+		puts("quit - quit the program.");
+		puts("usage: quit");
+		break;
+	
+	case HELP: default:
 		puts("usage: help [commands]");
 		puts("list of commands:");
-		puts("  help    print this help message.");
-		puts("  set     set input/ouput base.");
-		puts("  state   display input/output setting.");
-		puts("  swap    swap input/output base.");
-		puts("  info    print the information.");
-		puts("  quit    quit the program.");
+		puts("   help    print this help message.");
+		puts("   set     set input/ouput base.");
+		puts("   state   display input/output setting.");
+		puts("   swap    swap input/output base.");
+		puts("   info    print progs information.");
+		puts("   quit    quit the program.");
 		break;
 	}
 }
