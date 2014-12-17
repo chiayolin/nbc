@@ -81,31 +81,31 @@ void interactive() {
 		i = scan(arg[0], token);
 
 		switch(i) {
-			case SET:
-				c_set(arg, argc, token);
-				break;
-			case HELP:
-				c_help(2);
-				break;
-			case INFO:
-				c_info();
-				break;
-			case STATE:
-				c_state();
-				break;
-			case SWAP:
-				c_swap();
-				break;
-			case QUIT:
-				return;
-				break;
-			default:
-				if(argc != 1)
-					printf("error: `%s` command not found\n", arg[0]);
-				else 
-					size = convert(InNumBase, OutNumBase, arg[0], output);
-					printa(output, size);
-				break;	
+		case SET:
+			c_set(arg, argc, token);
+			break;
+		case HELP:
+			c_help(2);
+			break;
+		case INFO:
+			c_info();
+			break;
+		case STATE:
+			c_state();
+			break;
+		case SWAP:
+			c_swap();
+			break;
+		case QUIT:
+			return;
+			break;
+		default:
+			if(argc != 1)
+				printf("error: `%s` command not found\n", arg[0]);
+			else 
+				size = convert(InNumBase, OutNumBase, arg[0], output);
+				printa(output, size);
+			break;	
 		}
 	}
 }
@@ -130,48 +130,48 @@ void c_set(char *arg[], const int argc, const char *tokens[]) {
 		int i;
 		i = scan(arg[1], token);
 		switch(i) {
-			case INPUT: case I:
-				type = INPUT;
-				break;
-			case OUTPUT: case O:
-				type = OUTPUT;
-				break;
-			default:
-				printf("error: '%s' is not a variable.\n", arg[1]);
-				break;
+		case INPUT: case I:
+			type = INPUT;
+			break;
+		case OUTPUT: case O:
+			type = OUTPUT;
+			break;
+		default:
+			printf("error: '%s' is not a variable.\n", arg[1]);
+			break;
 		}
 
 		/* Step 2. Read number base */
 		i = scan(arg[2], token);
 		switch(i) {
-			case C_BIN:
-				buff = BIN;
-				break;
-			case C_OCT:
-				buff = OCT;
-				break;
-			case C_DEC:
-				buff = DEC;
-				break;
-			case C_HEX:
-				buff = HEX;
-				break;
-			default:
-				printf("error: '%s' is not a number base.\n", arg[2]);
-				return; /* Skip Step 3. if buff is not a number base */
-				break;
+		case C_BIN:
+			buff = BIN;
+			break;
+		case C_OCT:
+			buff = OCT;
+			break;
+		case C_DEC:
+			buff = DEC;
+			break;
+		case C_HEX:
+			buff = HEX;
+			break;
+		default:
+			printf("error: '%s' is not a number base.\n", arg[2]);
+			return; /* Skip Step 3. if buff is not a number base */
+			break;
 		}
 
 		/* Step 3. Store result into the external variable */
 		switch(type) {
-			case INPUT:
-				InNumBase = buff;
-				break;
-			case OUTPUT:
-				OutNumBase = buff;
-				break;
-			default:
-				break;
+		case INPUT:
+			InNumBase = buff;
+			break;
+		case OUTPUT:
+			OutNumBase = buff;
+			break;
+		default:
+			break;
 		}
 
 		return;
@@ -193,21 +193,21 @@ void c_state() {
 		}
 
 		switch(buff) {
-			case BIN:
-				puts("BIN");
-				break;
-			case OCT:
-				puts("OCT");
-				break;
-			case DEC:
-				puts("DEC");
-				break;
-			case HEX:
-				puts("HEX");
-				break;
-			default:
-				puts("ERR");
-				break;
+		case BIN:
+			puts("BIN");
+			break;
+		case OCT:
+			puts("OCT");
+			break;
+		case DEC:
+			puts("DEC");
+			break;
+		case HEX:
+			puts("HEX");
+			break;
+		default:
+			puts("ERR");
+			break;
 		}
 	}
 
@@ -233,27 +233,27 @@ void c_help(int type) {
 	    	   m[] = "more info about this program\n";
 
 	switch(type) {
-		case 0:
-			puts("use dtob -h for help");
-			break;
-		case 1:
-			puts("usage: dtob [options] [value ...]");
-			printf("  -h      %s", h);
-			printf("  -d      %s", d);
-			printf("  -b      %s", b);
-			printf("  -i      %s", i);
-			printf("  -m      %s", m);
-			break;
+	case 0:
+		puts("use dtob -h for help");
+		break;
+	case 1:
+		puts("usage: dtob [options] [value ...]");
+		printf("  -h      %s", h);
+		printf("  -d      %s", d);
+		printf("  -b      %s", b);
+		printf("  -i      %s", i);
+		printf("  -m      %s", m);
+		break;
 
-		case 2:
-			puts("list of commands:");
-			puts("  help    print this help message.");
-			puts("  set     set input/ouput base.");
-			puts("  state   display input/output setting.");
-			puts("  swap    swap input/output base.");
-			puts("  info    print the information.");
-			puts("  quit    quit the program.");
-			break;
+	case 2:
+		puts("list of commands:");
+		puts("  help    print this help message.");
+		puts("  set     set input/ouput base.");
+		puts("  state   display input/output setting.");
+		puts("  swap    swap input/output base.");
+		puts("  info    print the information.");
+		puts("  quit    quit the program.");
+		break;
 	}
 }
 
