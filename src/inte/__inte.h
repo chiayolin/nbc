@@ -26,7 +26,10 @@
 #include <math.h>
 
 #define MAX 1000
- 
+#define END "\0"
+#define DEFAULT -1
+#define IS_END (strcmp(tokens[index], END) == 0)
+
 /* Define colors */
 #define KNRM  "\x1B[0m"	 /* Normal */
 #define KRED  "\x1B[31m" /* Red */
@@ -41,10 +44,10 @@
 int scan(const char *array, const char *tokens[]); /* Return index if there's token in array */
 void read(char *array); /* Read user's input into an array */
 void printa(const char *array, const int size); /* Print an array */
-void c_set(char *arg[], const int argc, const char *tokens[]); /* Function: SET */
+void c_set(char *arg[], const int argc); /* Function: SET */
 void c_swap(); /* Swap user's setting */
 void c_state(); /* Display user's settings */
-void c_help(int type); /* Print help messages base on the varible 'type' */
+void c_help(char *arg[], const int argc); /* Print help messages */
 void c_info(); /* Print some information about this program */
 
 #endif

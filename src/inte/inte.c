@@ -26,8 +26,11 @@ int InNumBase, OutNumBase;
 /* Scan an array, return index if there is a token */
 int scan(const char *array, const char *tokens[]) {
 	int index = 0;
-	while(strcmp(array, tokens[index]) != 0)
-		++index;
+	
+	while(strcmp(array, tokens[index]) != 0 && !IS_END)
+			++index;
+	if(IS_END)
+		return DEFAULT;
 
 	return index;
 }
@@ -59,7 +62,7 @@ void interactive() {
 	char input[MAX], output[MAX], *arg[MAX];
 
 	const char *token[] = {
-		"set", "help", "info", "quit", "state", "swap" };
+		"set", "help", "info", "quit", "state", "swap", END };
 	enum { 
 		SET = 0, HELP, INFO, QUIT, STATE, SWAP }; /* Numberic value for tokens */
 
@@ -82,10 +85,10 @@ void interactive() {
 
 		switch(i) {
 		case SET:
-			c_set(arg, argc, token);
+			c_set(arg, argc);
 			break;
 		case HELP:
-			c_help(2);
+			c_help(arg, argc);
 			break;
 		case INFO:
 			c_info();
@@ -111,14 +114,14 @@ void interactive() {
 }
 
 /* Function: SET */
-void c_set(char *arg[], const int argc, const char *tokens[]) { 
+void c_set(char *arg[], const int argc) { 
 	extern int InNumBase, OutNumBase;
-	int type, buff;
+	int type, buff, i;
 
 	const char *token[] = {
-		"input", "-i", "output", "-o", "bin", "oct", "dec", "hex" };
+		"input", "-i", "output", "-o", "bin", "oct", "dec", "hex", END };
 	enum { 
-		INPUT, I, OUTPUT, O, C_BIN, C_OCT, C_DEC, C_HEX }; /* Numberic value for tokens */
+		INPUT = 0, I, OUTPUT, O, C_BIN, C_OCT, C_DEC, C_HEX }; /* Numberic value for tokens */
 
 
 	if(argc >= 4)
@@ -127,7 +130,7 @@ void c_set(char *arg[], const int argc, const char *tokens[]) {
 		printf("error: too few arguments.\n");
 	else {
 		/* Step 1. Read variable */
-		int i;
+		i = 0;
 		i = scan(arg[1], token);
 		switch(i) {
 		case INPUT: case I:
@@ -142,6 +145,7 @@ void c_set(char *arg[], const int argc, const char *tokens[]) {
 		}
 
 		/* Step 2. Read number base */
+		i = 0;
 		i = scan(arg[2], token);
 		switch(i) {
 		case C_BIN:
@@ -224,28 +228,33 @@ void c_swap() {
 	return;
 }
 
-/* Print help messages base on the varible 'type' */
-void c_help(int type) {
-	const char h[] = "print this usage and text\n",
-	    	   d[] = "convert decimal to binary\n",
-	    	   b[] = "convert binary to decimal\n",
-	    	   i[] = "force enter interactive mode\n",
-	    	   m[] = "more info about this program\n";
+/* Print help messages */
+void c_help(char *arg[], const int argc) {
+	const char *token[] = {
+		"help", "set", "state", "swap", "info", "quit", END };
+	enum {
+		HELP = 0, SET, STATE, SWAP, INFO, QUIT };
+
+	int type = (argc != 1) ? scan(arg[1], token) : 9;
 
 	switch(type) {
-	case 0:
-		puts("use dtob -h for help");
+	case HELP:
+		puts("usage: help [commands]");
 		break;
-	case 1:
-		puts("usage: dtob [options] [value ...]");
-		printf("  -h      %s", h);
-		printf("  -d      %s", d);
-		printf("  -b      %s", b);
-		printf("  -i      %s", i);
-		printf("  -m      %s", m);
+	case SET:
+		puts("usage: set [variables] [values]");
 		break;
-
-	case 2:
+	case STATE:
+		puts("usage: state");
+		break;
+	case SWAP:
+		puts("usage: swap");
+		break;
+	case INFO:
+		puts("usage: info");
+		break;
+	default:
+		puts("usage: help [commands]");
 		puts("list of commands:");
 		puts("  help    print this help message.");
 		puts("  set     set input/ouput base.");
