@@ -42,8 +42,10 @@
 #define RESET "\033[0m"  /* Reset */
 
 int scan(const char *array, const char *tokens[]); /* Return index if there's token in array */
+int verify(const char *array, const int input_base, const int argc); /* verifies user's input */
 void read(char *array); /* Read user's input into an array */
 void printa(const char *array, const int size); /* Print an array */
+
 void c_set(char *arg[], const int argc); /* Function: SET */
 void c_swap(); /* Swap user's setting */
 void c_state(); /* Display user's settings */
