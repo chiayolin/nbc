@@ -1,5 +1,5 @@
 /*
- * nbc - __shell.h - interactive mode
+ * nbc - __inte.h - interactive mode
  * Number Base Converter
  * Copyright (C) 2014  Chiayo Lin <chiayo.lin@gmail.com>
  *

@@ -53,6 +53,18 @@ void printa(const char *array, const int size) {
 	printf("\n");
 }
 
+/* verifies user's input, return 0 if is illegal */
+int verify(const char *array, const int input_base, const int argc) {
+	int i, illegal = 0;
+
+	for(i = 0; array[i] != '\0'; i++) {
+		if(!isxdigit(array[i]))
+			++illegal;
+	}
+
+	return (illegal != 0 || argc != 1) ? 0 : 1;
+}
+
 /* Interactive mode */
 void interactive() {
 	int argc, i, size;
@@ -66,10 +78,10 @@ void interactive() {
 
 	InNumBase = OutNumBase = DEC;
 	argc = i = 0;
-
-	printf("hey, for help type `help`\n");
+	
+	puts("type `help` for help");
 	while(1) {
-		printf(KCYN ">>> " RESET);
+		printf(KCYN "> " RESET);
 		read(input);
 		if(input[0] == '\0')
 			continue; /* Continue if user did't enter nothing */
@@ -101,11 +113,12 @@ void interactive() {
 			return;
 			break;
 		default:
-			if(argc != 1)
-				printf("error: `%s` command not found\n", arg[0]);
-			else 
+			if(!verify(arg[0], InNumBase, argc))
+				puts("error: illegal char(s)");
+			else {
 				size = convert(InNumBase, OutNumBase, arg[0], output);
 				printa(output, size);
+			}
 			break;	
 		}
 	}
