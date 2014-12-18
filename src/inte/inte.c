@@ -56,11 +56,21 @@ void printa(const char *array, const int size) {
 /* verifies user's input, return 0 if is illegal */
 int verify(const char *array, const int input_base, const int argc) {
 	int i, illegal = 0;
+	bool ishex = (input_base != HEX) ? 0 : 1,
+	     upper = 0;
 
 	for(i = 0; array[i] != '\0'; i++) {
-		if(!isxdigit(array[i]))
+		if(!islower(array[i]) && isalpha(array[i]))
+			++illegal, upper = 1;
+
+		if(ishex && !isxdigit(array[i]))
 			++illegal;
+		else if(!ishex && ((!isdigit(array[i]))
+			|| ((array[i] - '0') >= input_base)))
+				++illegal;
 	}
+	if(upper)
+		puts("error: lower case only");
 
 	return (illegal != 0 || argc != 1) ? 0 : 1;
 }
@@ -209,19 +219,19 @@ void c_state() {
 
 		switch(buff) {
 		case BIN:
-			puts("BIN");
+			puts("binary");
 			break;
 		case OCT:
-			puts("OCT");
+			puts("octal");
 			break;
 		case DEC:
-			puts("DEC");
+			puts("decimal");
 			break;
 		case HEX:
-			puts("HEX");
+			puts("hexadecimal");
 			break;
 		default:
-			puts("ERR");
+			puts("unknown");
 			break;
 		}
 	}
