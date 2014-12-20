@@ -16,41 +16,82 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "./ihub.h"
+// #include "./core/core.h"
+#include "./inte/inte.h"
+
+#include <ctype.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
+
+#define MAX 1000
+#define END "\0"
+#define IS_ERR -1
+#define IS_END (strcmp(tokens[index], END) == 0)
+
+/* scan if *optarg* is a token, then return index */
+int opt_arg_scan(const char *array, const char *tokens[]);
 
 int main(const int argc, char *argv[]) {
-	int binary[MAX], decimal;
-	int size;
-
-	if(argc == 1)
+	if(argc == 1) {
 		interactive();
+		return 0;
+	}
 
-	/* Read the options if argv[0][0] = '-' */
-	else if((*++argv)[0] == '-') {
-		int i, size;
-		char opt = *++argv[0], input[MAX], output[MAX];
-		switch(opt) {
+	char *in_base_value = NULL,
+	     *out_base_value = NULL;
+	int iflag, oflag, index, c;
+	
+	iflag = oflag = c = 0;
+	opterr = 0;
+	
+	while((c = getopt(argc, argv, "i:o:hm")) != -1) {
+		switch(c) {
+		case 'h':
+			puts("this is help");
+			break;
+		case 'm':
+			puts("this is info");
+			break;
 		case 'i':
-			if(argv[1] == NULL)
-				printf("agument to '-%s' is missing, expected a number\n", argv[0]);
-			else {
-				size = convert(HEX, DEC, argv[1], output);
-				for(i = 0; i < size; i++)
-					printf("%c", output[i]);
-				puts("");
-			}
+			in_base_value = optarg;
+			iflag = 1;
 			break;
+		case 'o':
+			out_base_value = optarg;
+			oflag = 1;
+			break;
+		case '?':
+			if((optopt == 'i') || (optopt == 'o'))
+				fprintf(stderr, "option -%c requires an argument.\n", optopt); 
+			else if(isprint(optopt))
+				fprintf(stderr, "unknown option `-%c'.\n", optopt);
+			else
+				fprintf(stderr, "unknown option character `\\x%x'.\n", optopt);
+			return 1;
 		default:
-			printf("nbc: alas, invalid option '-%s' \n use -d\n", argv[0]);
-			break;
+			return 1;
 		}
 	}
 	
-	/* Else, print the error message */
-	else {
-		printf("nbc: alas, syntax error :-(\n");
-		return 1;
-	}
-			
+	printf("iflag= %d, oflag= %d\n", iflag, oflag);
+	printf("in_base_value= %s\n", in_base_value);
+	printf("out_base_value= %s\n", out_base_value);
+
+	for(index = optind; index < argc; index++)
+		printf("value= %s\n", argv[index]);
+
 	return 0;
-}	
+
+}
+
+int opt_arg_scan(const char *array, const char *tokens[]) {	
+	if(array == NULL)
+		return IS_ERR;
+	
+	int index = 0;
+	while(strcmp(array, tokens[index]) != 0 && !IS_END)
+		index++;
+
+	return IS_END ? IS_ERR : index;
+}
