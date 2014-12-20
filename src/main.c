@@ -16,7 +16,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-// #include "./core/core.h"
+#include "./core/core.h"
 #include "./inte/inte.h"
 
 #include <ctype.h>
@@ -47,7 +47,7 @@ int main(const int argc, char *argv[]) {
 	
 	iflag = oflag = c = 0;
 	opterr = 0;
-	
+
 	while((c = getopt(argc, argv, "i:o:hm")) != -1) {
 		switch(c) {
 		case 'h':
@@ -77,12 +77,20 @@ int main(const int argc, char *argv[]) {
 		}
 	}
 	
-	printf("iflag= %d, oflag= %d\n", iflag, oflag);
-	printf("in_base_value= %s\n", in_base_value);
-	printf("out_base_value= %s\n", out_base_value);
-
+	char result[MAX];
+	int in_base, out_base;
+	in_base = out_base = 0;
+	set_base(in_base_value, out_base_value, in_base, out_base);
+	
+	int size = 0;
 	for(index = optind; index < argc; index++)
-		printf("value= %s\n", argv[index]);
+		size = convert(in_base, out_base, argv[index], result);
+	
+	int i;
+	for(i = 0; i < size; i++) {
+		printf("%c", result[i]);
+		printf("\n");
+	}
 	
 	return 0;
 
@@ -100,13 +108,13 @@ int opt_arg_scan(const char *array, const char *tokens[]) {
 }
 
 /* set input/output number base from *[in|out]_base_value */
-void set_base(const char *in, const char *out, int in_base, int out_base) {
+int set_base(const char *in, const char *out, int in_base, int out_base) {
 	const char *tokens[] = { 
 		"b", "o", "d", "h",
 		"bin", "oct", "dec", "hex",
 		"binary", "octal", "decimal", "hexadecimal" };
 	enum {
-		A_B = 0, A_O, A_D, A_H, A_BIN, A_OCT, A_HEX,
+		A_B = 0, A_O, A_D, A_H, A_BIN, A_OCT, A_DEC, A_HEX,
 		A_BINARY, A_OCTAL, A_DECIMAL, A_HEXADECIMAL };
 	
 	if(in == NULL || out == NULL)
@@ -115,12 +123,36 @@ void set_base(const char *in, const char *out, int in_base, int out_base) {
 	in_base = opt_arg_scan(in, tokens);
 	out_base = opt_arg_scan(out, tokens);
 	
-	int i;
+	int i, buff = 0;
 	for(i = 0; i < 1; i++) {
-			
-	// Something here, but I am not sure yet.
-	
-	
-	
+		if(i == 0)
+			buff = in_base;
+		else
+			buff = out_base;
+
+		switch(buff) {
+		case A_B: case A_BIN: case A_BINARY:
+			buff = BIN;
+			break;
+		case A_O: case A_OCT: case A_OCTAL:
+			buff = OCT;
+			break;
+		case A_D: case A_DEC: case A_DECIMAL:
+			buff = DEC;
+			break;
+		case A_H: case A_HEX: case A_HEXADECIMAL:
+			buff = HEX;
+			break;
+		default:
+			return IS_ERR;
+			break;
+
+		if(i == 0)
+			in_base = buff;
+		else 
+			out_base = buff;
+		}	
 	}
+	
+	return 0;
 }
