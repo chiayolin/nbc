@@ -32,6 +32,9 @@
 /* scan if *optarg* is a token, then return index */
 int opt_arg_scan(const char *array, const char *tokens[]);
 
+/* set input/output number base from *[in|out]_base_value */
+int set_base(const char *in, const char *out, int input, int output);
+
 int main(const int argc, char *argv[]) {
 	if(argc == 1) {
 		interactive();
@@ -80,7 +83,7 @@ int main(const int argc, char *argv[]) {
 
 	for(index = optind; index < argc; index++)
 		printf("value= %s\n", argv[index]);
-
+	
 	return 0;
 
 }
@@ -94,4 +97,30 @@ int opt_arg_scan(const char *array, const char *tokens[]) {
 		index++;
 
 	return IS_END ? IS_ERR : index;
+}
+
+/* set input/output number base from *[in|out]_base_value */
+void set_base(const char *in, const char *out, int in_base, int out_base) {
+	const char *tokens[] = { 
+		"b", "o", "d", "h",
+		"bin", "oct", "dec", "hex",
+		"binary", "octal", "decimal", "hexadecimal" };
+	enum {
+		A_B = 0, A_O, A_D, A_H, A_BIN, A_OCT, A_HEX,
+		A_BINARY, A_OCTAL, A_DECIMAL, A_HEXADECIMAL };
+	
+	if(in == NULL || out == NULL)
+		return IS_ERR;
+
+	in_base = opt_arg_scan(in, tokens);
+	out_base = opt_arg_scan(out, tokens);
+	
+	int i;
+	for(i = 0; i < 1; i++) {
+			
+	// Something here, but I am not sure yet.
+	
+	
+	
+	}
 }
