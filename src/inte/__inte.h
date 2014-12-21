@@ -50,6 +50,5 @@ void c_set(char *arg[], const int argc); /* Function: SET */
 void c_swap(); /* Swap user's setting */
 void c_state(); /* Display user's settings */
 void c_help(char *arg[], const int argc); /* Print help messages */
-void c_info(); /* Print some information about this program */
 
 #endif

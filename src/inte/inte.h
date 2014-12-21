@@ -25,4 +25,7 @@
 /* External Interface */
 void interactive();
 
+/* Print prog's infomation */
+void info();
+
 #endif
