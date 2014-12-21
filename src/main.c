@@ -53,14 +53,18 @@ int main(const int argc, char *argv[]) {
 	
 	iflag = oflag = c = 0;
 	opterr = 0;
-
-	while((c = getopt(argc, argv, "i:o:hm")) != -1) {
+	
+	/* read command line options and args */
+	while((c = getopt(argc, argv, "i:o:hmf")) != -1) {
 		switch(c) {
 		case 'h':
 			print_help(!IS_ERR);
 			return 0;
 		case 'm':
 			info();
+			return 0;
+		case 'f':
+			interactive();
 			return 0;
 		case 'i':
 			in_base_value = optarg;
@@ -72,36 +76,42 @@ int main(const int argc, char *argv[]) {
 			break;
 		case '?':
 			if((optopt == 'i') || (optopt == 'o'))
-				fprintf(stderr, "option -%c requires an argument.\n", optopt); 
+				fprintf(stderr, "error: option -%c requires an argument.\n", optopt); 
 			else if(isprint(optopt)){
-				fprintf(stderr, "unknown option `-%c'.\n", optopt);
+				fprintf(stderr, "error: unknown option `-%c'.\n", optopt);
 				print_help(IS_ERR);
 			}
 			else
-				fprintf(stderr, "unknown option char `\\x%x'.\n", optopt);
+				fprintf(stderr, "error: unknown option char `\\x%x'.\n", optopt);
 			return 1;
 		default:
 			return 1;
 		}
 	}
 	
-	char result[MAX];
+	/* exit if either oflag or iflag has not been set */
+	if(iflag != 1 || oflag != 1) {
+		fprintf(stderr, "error: in/out base must be specific.\n");
+		return 0;
+	}
+
+	/* set In/OutNumBase base on in/out_base_value */
 	extern int InNumBase, OutNumBase;
-	
 	int error = set_base(in_base_value, out_base_value);
 	if(error == IS_ERR) {
-		fprintf(stderr, "couldn't set number base\n");
+		fprintf(stderr, "error: couldn't set number base.\n");
 		return 1;
 	}
 	
 	int size = 0;
+	char result[MAX];
 	for(index = optind; index < argc; index++)
 		size = convert(InNumBase, OutNumBase, argv[index], result);
 	
 	int i;
 	for(i = 0; i < size; i++)
 		printf("%c", result[i]);
-	printf("\n");
+	puts("");
 	
 	return 0;
 
@@ -159,9 +169,9 @@ int set_base(const char *in, const char *out) {
 			break;
 		default:
 			if(i != 1)
-				printf("error: '%s' is not a number base.\n", out);
+				fprintf(stderr, "error: '%s' is not a number base.\n", out);
 			else
-				printf("error: '%s' is not a number base.\n", in);
+				fprintf(stderr, "error: '%s' is not a number base.\n", in);
 			error = 1;
 			break;
 		}
@@ -187,8 +197,12 @@ void print_help(bool is_err) {
 		puts("  -f         force interactive mode");
 		puts("  -i <base>  set input number base");
 		puts("  -o <base>  set output number base");
-		puts("  <value>    input number value");
-		puts("");
+		puts("  <value>    input number value\n");
+		puts("in/out base:");
+		puts("  b, bin, binary");
+		puts("  o, oct, octal");
+		puts("  d, dec, decimal");
+		puts("  h, hex, hexdecimal\n");
 		puts("both -i and -o options need to be used at");
 		puts("the same time, and <value> can't be empty");
 
