@@ -29,11 +29,13 @@
 #define IS_ERR -1
 #define IS_END (strcmp(tokens[index], END) == 0)
 
+int InNumBase, OutNumBase;
+
 /* scan if *optarg* is a token, then return index */
 int opt_arg_scan(const char *array, const char *tokens[]);
 
 /* set input/output number base from *[in|out]_base_value */
-int set_base(const char *in, const char *out, int input, int output);
+int set_base(const char *in, const char *out);
 
 int main(const int argc, char *argv[]) {
 	if(argc == 1) {
@@ -70,7 +72,7 @@ int main(const int argc, char *argv[]) {
 			else if(isprint(optopt))
 				fprintf(stderr, "unknown option `-%c'.\n", optopt);
 			else
-				fprintf(stderr, "unknown option character `\\x%x'.\n", optopt);
+				fprintf(stderr, "unknown option char `\\x%x'.\n", optopt);
 			return 1;
 		default:
 			return 1;
@@ -78,19 +80,20 @@ int main(const int argc, char *argv[]) {
 	}
 	
 	char result[MAX];
-	int in_base, out_base;
-	in_base = out_base = 0;
-	set_base(in_base_value, out_base_value, in_base, out_base);
+	extern int InNumBase, OutNumBase;
+	
+	int error = set_base(in_base_value, out_base_value);
+	if(error == IS_ERR)
+		return 1;
 	
 	int size = 0;
 	for(index = optind; index < argc; index++)
-		size = convert(in_base, out_base, argv[index], result);
+		size = convert(InNumBase, OutNumBase, argv[index], result);
 	
 	int i;
-	for(i = 0; i < size; i++) {
+	for(i = 0; i < size; i++)
 		printf("%c", result[i]);
-		printf("\n");
-	}
+	printf("\n");
 	
 	return 0;
 
@@ -108,27 +111,30 @@ int opt_arg_scan(const char *array, const char *tokens[]) {
 }
 
 /* set input/output number base from *[in|out]_base_value */
-int set_base(const char *in, const char *out, int in_base, int out_base) {
+int set_base(const char *in, const char *out) {
 	const char *tokens[] = { 
 		"b", "o", "d", "h",
 		"bin", "oct", "dec", "hex",
-		"binary", "octal", "decimal", "hexadecimal" };
+		"binary", "octal", "decimal", "hexadecimal", END};
 	enum {
 		A_B = 0, A_O, A_D, A_H, A_BIN, A_OCT, A_DEC, A_HEX,
 		A_BINARY, A_OCTAL, A_DECIMAL, A_HEXADECIMAL };
 	
 	if(in == NULL || out == NULL)
 		return IS_ERR;
-
-	in_base = opt_arg_scan(in, tokens);
-	out_base = opt_arg_scan(out, tokens);
 	
-	int i, buff = 0;
-	for(i = 0; i < 1; i++) {
-		if(i == 0)
-			buff = in_base;
+	extern int InNumBase, OutNumBase;
+	InNumBase = opt_arg_scan(in, tokens);
+	OutNumBase = opt_arg_scan(out, tokens);
+
+	int i, buff, error;
+	buff = error = 0;
+
+	for(i = 1; i <= 2; i++) {
+		if(i != 1)
+			buff = OutNumBase;
 		else
-			buff = out_base;
+			buff = InNumBase;
 
 		switch(buff) {
 		case A_B: case A_BIN: case A_BINARY:
@@ -144,15 +150,19 @@ int set_base(const char *in, const char *out, int in_base, int out_base) {
 			buff = HEX;
 			break;
 		default:
-			return IS_ERR;
+			if(i != 1)
+				printf("error: '%s' is not a number base.\n", out);
+			else
+				printf("error: '%s' is not a number base.\n", in);
+			error = 1;
 			break;
+		}
 
-		if(i == 0)
-			in_base = buff;
+		if(i != 1)
+			OutNumBase = buff;
 		else 
-			out_base = buff;
-		}	
+			InNumBase = buff;
 	}
 	
-	return 0;
+	return error ? IS_ERR : 0;
 }
