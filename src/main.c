@@ -32,6 +32,9 @@
 
 int InNumBase, OutNumBase;
 
+/* verifies arg, return 0 if is illegal */
+int verify_arg(const char *array, const int input_base, const int argc);
+
 /* scan if *optarg* is a token, then return index */
 int opt_arg_scan(const char *array, const char *tokens[]);
 
@@ -102,19 +105,48 @@ int main(const int argc, char *argv[]) {
 		fprintf(stderr, "error: couldn't set number base.\n");
 		return 1;
 	}
-	
-	int size = 0;
+
+	if(argc < 6) {	
+		fprintf(stderr, "error: no input value!\n");
+		return 1;
+	}
+
 	char result[MAX];
-	for(index = optind; index < argc; index++)
-		size = convert(InNumBase, OutNumBase, argv[index], result);
-	
-	int i;
-	for(i = 0; i < size; i++)
-		printf("%c", result[i]);
-	puts("");
-	
+	for(index = optind; index < argc; index++) {
+		if(!verify_arg(argv[index], InNumBase, argc)){
+			fprintf(stderr, "error: illegal char(s)\n");
+			return 1;
+		}
+		else {
+			convert(InNumBase, OutNumBase, argv[index], result);
+			printf("%s\n", result);
+		}
+	}
+
 	return 0;
 
+}
+
+/* verifies arg, return 0 if is illegal */
+int verify_arg(const char *array, const int input_base, const int argc) {
+	int i, illegal = 0;
+	bool ishex = (input_base != HEX) ? 0 : 1,
+	     upper = 0;
+	
+	for(i = 0; array[i] != '\0'; i++) {
+		if(!islower(array[i]) && isalpha(array[i]))
+			++illegal, upper = 1;
+		
+		if(ishex && !isxdigit(array[i]))
+			++illegal;
+		else if(!ishex && ((!isdigit(array[i]))
+			|| ((array[i] - '0') >= input_base)))
+				 ++illegal;
+	}
+	if(upper)
+		fprintf(stderr, "error: lower case only.\n");
+	
+	return (illegal != 0 || argc != 6) ? 0 : 1;
 }
 
 int opt_arg_scan(const char *array, const char *tokens[]) {	
@@ -128,7 +160,6 @@ int opt_arg_scan(const char *array, const char *tokens[]) {
 	return IS_END ? IS_ERR : index;
 }
 
-/* set input/output number base from *[in|out]_base_value */
 int set_base(const char *in, const char *out) {
 	const char *tokens[] = { 
 		"b", "o", "d", "h",
