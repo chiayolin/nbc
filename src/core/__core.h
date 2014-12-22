@@ -22,6 +22,7 @@
 #define MAX 1024
 
 #include <stdbool.h>
+#include <stdint.h>
 #include <string.h>
 #include <stdio.h>
 #include <ctype.h>
