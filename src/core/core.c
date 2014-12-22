@@ -66,6 +66,8 @@ int pos_process(char *output, uint64_t common, const int to) {
 	}
 
 	reverse(output, size);
+	output[size] = '\0';
+
 	return size; /* Return the size of array */
 }
 
