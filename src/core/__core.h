@@ -22,14 +22,22 @@
 #define MAX 1024
 
 #include <stdbool.h>
+#include <stdint.h>
 #include <string.h>
 #include <stdio.h>
 #include <ctype.h>
 #include <math.h>
 
-/* Number Base Conversions */
-int pre_process(char *input, const int size, const int from); /* Generates *common* */
-int pos_process(char *output, int common, const int to); /* Processes *common* */
-void reverse(char *array, const int size); /* Reverse an array */
+/* Generates and return a 64 bit *common* */
+uint64_t pre_process(char *input, const int size, const int from);
+
+/* Processes *common* and return the size of output array*/
+int pos_process(char *output, uint64_t common, const int to);
+
+/* Reverse an array */
+void reverse(char *array, const int size);
+
+/* Determine if a 64 bit unsigned interger is overflow */
+bool is_overflow(uint64_t input_val);
 
 #endif
