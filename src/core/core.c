@@ -27,9 +27,10 @@ int convert(const int from, const int to, char *input, char *output) {
 	return size; /* Return the size of output[] */
 }
 
-/* Generates *common* */
-int pre_process(char *input, const int size, const int from) {
-	int i, base, common = 0;
+/* Generates and return a 64 bit *common* */
+uint64_t pre_process(char *input, const int size, const int from) {
+	uint64_t common = 0;
+	int i, base;
 	base = from;
 
 	/* (x= from char to int, y= from char(letter) to int) in Hex. */
@@ -46,8 +47,8 @@ int pre_process(char *input, const int size, const int from) {
 	return common;
 }
 
-/* Processes *common* */
-int pos_process(char *output, int common, const int to) {
+/* Processes *common* and return the size of output array*/
+int pos_process(char *output, uint64_t common, const int to) {
 	if(common == 0)
 		/* terminate with output = '0' when common is 0 */
 		return (output[0] = '0') != '0' ? 0 : 1;
