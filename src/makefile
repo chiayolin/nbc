@@ -1,6 +1,10 @@
-# This file is part of: nbc (Version 2.0)
+# This file is part of: nbc (Version 0.1-(x))
 # Author: Chiayo Lin
-# Date  : Nov. 28, 2014
+# Date  : Dec. 24, 2014
 
-nbc: main.c inte/inte.c core/core.c
-	gcc -o nbc main.c inte/inte.c core/core.c -lm
+PRG= nbc
+COM= gcc
+SRC= main.c inte/inte.c core/core.c
+
+$(PRG): $(SRC)
+	$(COM) -o $(PRG) $(SRC) -lm
