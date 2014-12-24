@@ -43,6 +43,11 @@ uint64_t pre_process(char *input, const int size, const int from) {
 			(!isdigit(input[i])) ? (type = type_y) : (type = type_x);
 		common = common + ((input[i] - type) * (pow(base, i)));
 	}
+	
+	if(is_overflow(common)) {
+		fprintf(stderr, "core: number is too large\n");
+		return 0;
+	}
 
 	return common;
 }
@@ -78,4 +83,11 @@ void reverse(char *array, const int size) {
 		temp[i] = array[i]; /* Copy array into a buffer */
 	for(i = 0, j = size - 1; j >= 0; i++, j--)
 		array[i] = temp[j]; /* Then put it back */
+}
+
+/* Determine if a 64 bit unsigned interger is overflow */
+bool is_overflow(uint64_t input_val) {
+	size_t msb = (size_t) log2(input_val);
+
+	return (msb < 63) ? 0 : 1;
 }
