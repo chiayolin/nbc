@@ -23,6 +23,9 @@
 /* Store input/output settings as external variables */
 int InNumBase, OutNumBase;
 
+/* Store prompt as an external variable */
+char Prompt[MAX] = "> ";
+
 /* Scan an array, return index if there is a token */
 int scan(const char *array, const char *tokens[]) {
 	int index = 0;
@@ -82,16 +85,17 @@ void interactive() {
 	char input[MAX], output[MAX], *arg[MAX];
 
 	const char *token[] = {
-		"set", "help", "info", "quit", "state", "swap", END };
+		"set", "help", "info", "quit", "state", "swap", "prompt", END };
 	enum { 
-		SET = 0, HELP, INFO, QUIT, STATE, SWAP }; /* Numberic value for tokens */
+		SET = 0, HELP, INFO, QUIT, STATE, SWAP, PROMPT }; /* Numberic value for tokens */
 
 	InNumBase = OutNumBase = DEC;
 	argc = i = 0;
 	
+	extern char Prompt[MAX];
 	puts("type `help` for help");
 	while(1) {
-		printf(KCYN "> " RESET);
+		printf(KCYN "%s" RESET, Prompt);
 		read(input);
 		if(input[0] == '\0')
 			continue; /* Continue if user did't enter nothing */
@@ -118,6 +122,9 @@ void interactive() {
 			break;
 		case SWAP:
 			c_swap();
+			break;
+		case PROMPT:
+			c_prompt(arg, argc);
 			break;
 		case QUIT:
 			return;
@@ -204,6 +211,24 @@ void c_set(char *arg[], const int argc) {
 
 }
 
+/* Set prompt */
+void c_prompt(char *arg[], int argc) {
+	extern char Prompt[MAX];
+	
+	if(argc > MAX - 1)
+		puts("error: prompt is too long.");
+
+	else if(argc != 1) {
+		if(!strcmp(arg[1], "null")) {
+			strcpy(Prompt, "");
+			return;
+		}
+
+		strcpy(Prompt, arg[1]);
+		Prompt[strlen(Prompt)] = ' ';
+	}
+}
+
 /* Display user's input/output settings */
 void c_state() {
 	int buff, i;
@@ -252,9 +277,10 @@ void c_swap() {
 /* Print help messages */
 void c_help(char *arg[], const int argc) {
 	const char *token[] = {
-		"help", "set", "state", "swap", "info", "quit", END };
+		"help", "set", "state", "swap", "info", "prompt", 
+		"quit", END };
 	enum {
-		HELP = 0, SET, STATE, SWAP, INFO, QUIT };
+		HELP = 0, SET, STATE, SWAP, INFO, PROMPT, QUIT };
 
 	int type = (argc != 1) ? scan(arg[1], token) : DEFAULT;
 
@@ -280,11 +306,15 @@ void c_help(char *arg[], const int argc) {
 		puts("info - print prog's infomation.");
 		puts("usage: info");
 		break;
+	case PROMPT:
+		puts("prompt - set prompt's string.");
+		puts("usage: prompt [string|null]");
+		puts("prompt will be removed if arg is \"null\".");
+		break;
 	case QUIT:
 		puts("quit - quit the program.");
 		puts("usage: quit");
 		break;
-	
 	case HELP: default:
 		puts("usage: help [commands]");
 		puts("list of commands:");
@@ -292,7 +322,8 @@ void c_help(char *arg[], const int argc) {
 		puts("   set     set input/ouput base.");
 		puts("   state   display input/output setting.");
 		puts("   swap    swap input/output base.");
-		puts("   info    print progs information.");
+		puts("   info    print prog's information.");
+		puts("   prompt  set prompt's string.");
 		puts("   quit    quit the program.");
 		break;
 	}

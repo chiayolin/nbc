@@ -49,6 +49,7 @@ void printa(const char *array, const int size); /* Print an array */
 void c_set(char *arg[], const int argc); /* Function: SET */
 void c_swap(); /* Swap user's setting */
 void c_state(); /* Display user's settings */
+void c_prompt(char *arg[], const int argc); /* Set prompt */
 void c_help(char *arg[], const int argc); /* Print help messages */
 
 #endif
