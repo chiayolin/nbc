@@ -28,6 +28,37 @@ Usage
 -----
 
 ###Command Line
+`nbc [ -h | -m | -f ] [ -i <in base>] [ -o <out base>] [ <value> ]`
+
+Here is a list of available options: `-h` `-m` `-f` `-i` `-o`
+
+| options     | descriptions            |
+| ----------- |-------------------------|
+| `-h`        | print more prog's info  |
+| `-f`        | force interactive mode  |
+| `-i <base>` | set input number base   |
+| `-o <base>` | set output number base  |
+| `value`     | input number value      |
+
+Here are four different in/out bases, and each base has three different form.
+
+`b`, `bin`, `binary`
+
+`o`, `oct`, `octal`
+
+`d`, `dec`, `decimal`
+
+`h`, `hex`, `hexadecimal`
+
+Arguments `-i` and `-o` expect a number base after, and both arguments need to be used at the same time. However, the `<value>` can not be empty. For example, when you want to convert a decimal number `332000` to a binary number, all you need is enter: `nbc -i dec -o bin 332000` into the termianl.
+
+`$ nbc -i dec -o bin 332000`
+
+Output:
+
+`1010001000011100000`
+
+
 
 ###Interactive Mode
 
