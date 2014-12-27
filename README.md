@@ -62,7 +62,14 @@ Output:
 
 Okay, so now if we want ot convert a hexadecimal number `bbb6ae` to a decimal number, then you will need yo enter
 `nbc -i hex -o dec bbb6ae` into the termianl. Else just like what it says above, every number base has three
-different forms. Therefore you can either enter `nbc -i h -o d bbb6ae` `nbc -i hexadecimal -o decimal bbb6ae`
+different forms. Therefore you can either enter `nbc -i h -o d bbb6ae`, `nbc -i hexadecimal -o decimal bbb6ae`, or
+any liget forms have shown above. This is what it might looks like on terminal:
+
+`$ nbc -i hex -o dec bbb6ae`
+
+Output:
+
+`12301998`
 
 ###Interactive Mode
 
