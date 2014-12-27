@@ -33,13 +33,13 @@ Usage
 Here is a list of available options: `-h` `-m` `-f` `-i` `-o`
 
 
-| options     | descriptions                                                   |
+| Options     | Descriptions                                                   |
 | ----------- |----------------------------------------------------------------|
 | `-h`        | print program's information, such as license, author, and etc. |
 | `-f`        | force program enther the interactive mode.                     |
-| `-i <base>` | set input number base, \<base\> is required.                     |
-| `-o <base>` | set output number base, \<base\> is required.                    |
-| `<value>`   | input number value, this value should not be empty.            |
+| `-i <base>` | set input number base, \<base\> is required.                   |
+| `-o <base>` | set output number base, \<base\> is required.                  |
+| `<value>`   | input number value, this value can  not be empty.              |
 
 Here are four different in/out bases, and each base has three different form.
 
@@ -89,6 +89,65 @@ You will get the same right output:
 `12301998`
 
 ###Interactive Mode
+
+The program provides a powerful interactive mode, which makes the number base conversion much easier. You can either
+enter by just runing the command `nbc`, or with the `-i` argument, like, `nbc -i`. 
+
+When you get into the interactive mode, you will see a prompt like this:
+
+```
+type `help` for help
+>
+````
+
+You can use the command `help` for help.
+
+```
+type `help` for help
+> help (Press RETURN)
+```
+
+Then you will get a list of available commands. However, every command is defined internally. Use `help COMMAND` to 
+find out more about the function `COMMAND`. For example, I want to know more about the command `set`, then I will 
+type:
+
+```
+> help set (Press RETURN)
+```
+
+Output:
+
+```
+set - set input/output base.
+usage: set [options [values]]
+options:
+   -i, input   <base>
+   -o, output  <base>
+values:
+   bin, oct, dec, hex
+```
+
+Now you get the idea, try every command with `help` if you want.
+
+Okay, so now let's talk about the main function of `nbc`, convert number bases. Let's say you want to convert a 
+hexdecimal number to binary. Then you would want use the `set` command to set input base to hexadecimal, and output 
+base to binary. Here is one way to do it:
+
+```
+> set input hex (Press RETURN)
+> set output bin (Press RETURN)
+```
+
+And of course, you can replace `input` with `-i` and `output` with `-o`:
+
+```
+> set -i hex (Press RETURN)
+> set -o bin (Press RETURN)
+```
+
+Available number bases can be found on the above section. You can always use the `help` command to get more information about every command. 
+
+> I hope you will find this program useful. - Chiayo Lin
 
 License
 -------
