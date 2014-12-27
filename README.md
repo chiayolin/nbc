@@ -32,13 +32,14 @@ Usage
 
 Here is a list of available options: `-h` `-m` `-f` `-i` `-o`
 
-| options     | descriptions            |
-| ----------- |-------------------------|
-| `-h`        | print more prog's info  |
-| `-f`        | force interactive mode  |
-| `-i <base>` | set input number base   |
-| `-o <base>` | set output number base  |
-| `value`     | input number value      |
+
+| options     | descriptions                                                   |
+| ----------- |----------------------------------------------------------------|
+| `-h`        | print program's information, such as license, author, and etc. |
+| `-f`        | force program enther the interactive mode.                     |
+| `-i <base>` | set input number base, \<base\> is required.                     |
+| `-o <base>` | set output number base, \<base\> is required.                    |
+| `<value>`   | input number value, this value should not be empty.            |
 
 Here are four different in/out bases, and each base has three different form.
 
@@ -60,7 +61,7 @@ Output:
 
 `1010001000011100000`
 
-Okay, so now if we want ot convert a hexadecimal number `bbb6ae` to a decimal number, then you will need yo enter
+Okay, so now if we want to convert a hexadecimal number `bbb6ae` to a decimal number, then you will need to enter
 `nbc -i hex -o dec bbb6ae` into the termianl. However, like what it says above, every number base has three
 different forms. Therefore you can either use `nbc -i h -o d bbb6ae`, `nbc -i hexadecimal -o decimal bbb6ae`, or
 any liget forms have shown above. This is what it might looks like on the terminal:
