@@ -50,7 +50,9 @@ Here are four different in/out bases, and each base has three different form.
 
 `h`, `hex`, `hexadecimal`
 
-Arguments `-i` and `-o` expect a number base after, and both arguments need to be used at the same time. However, the `<value>` can not be empty. For example, when you want to convert a decimal number `332000` to a binary number, all you need is enter: `nbc -i dec -o bin 332000` into the termianl.
+Arguments `-i` and `-o` expect a number base after, and both arguments need to be used at the same time. However, 
+the `<value>` can not be empty. For example, when you want to convert a decimal number `332000` to a binary 
+number, all you need is enter: `nbc -i dec -o bin 332000` into the termianl.
 
 `$ nbc -i dec -o bin 332000`
 
@@ -58,7 +60,9 @@ Output:
 
 `1010001000011100000`
 
-
+Okay, so now if we want ot convert a hexadecimal number `bbb6ae` to a decimal number, then you will need yo enter
+`nbc -i hex -o dec bbb6ae` into the termianl. Else just like what it says above, every number base has three
+different forms. Therefore you can either enter `nbc -i h -o d bbb6ae` `nbc -i hexadecimal -o decimal bbb6ae`
 
 ###Interactive Mode
 
