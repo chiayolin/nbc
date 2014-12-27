@@ -71,6 +71,22 @@ Output:
 
 `12301998`
 
+A shortcut to do it:
+
+`$ nbc -i h -o d bbb6ae`
+
+Output looks the same:
+
+`12301998`
+
+Well, there is a long way to do it as well:
+
+`nbc -i hexadecimal -o decimal bbb6ae`
+
+You will get the same right output:
+
+`12301998`
+
 ###Interactive Mode
 
 License
@@ -82,6 +98,7 @@ This program is free software: you can redistribute it and/or modify it under th
 License as published by the Free Software Foundation, either version 3 of the License, or any later version.
 
 This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied 
-warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more 
+details.
 You should have received a copy of the GNU General Public License along with this program. If not, see 
 <http://www.gnu.org/licenses/>.
