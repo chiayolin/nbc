@@ -1,6 +1,10 @@
-# This file is part of: dtob (Version 1.0)
+# This file is part of: nbc (Version 0.1-(x))
 # Author: Chiayo Lin
-# Date  : Nov. 02, 2014
+# Date  : Dec. 24, 2014
 
-dtob: main.c core.c
-	gcc -o dtob main.c core.c
+PRG= nbc
+COM= gcc
+SRC= main.c inte/inte.c core/core.c
+
+$(PRG): $(SRC)
+	$(COM) -o $(PRG) $(SRC) -lm

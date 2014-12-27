@@ -1,11 +1,11 @@
 #!/bin/bash
-# This file is part of: dtob (Version 1.1)
+# This file is part of: nbc (Version 2.0)
 # Author: Chiayo Lin
-# Date  : Nov. 19, 2014
+# Date  : Nov. 28, 2014
 
 SRC_PATH=./src/
 PGM_PATH=/usr/local/bin/
-PGM_NAME=dtob
+PGM_NAME=nbc
 COM_NAME=gcc
 PGM_XIST=0
 COM_XIST=1
@@ -15,7 +15,7 @@ if [ -f $PGM_PATH$PGM_NAME ]; then
 	PGM_XIST=1
 fi
 
-# Check if gcc has been installed
+# Check if complier has been installed
 command -v $COM_NAME > /dev/null
 if [ $? != 0 ]; then
 	COM_XIST=0
@@ -41,7 +41,7 @@ if [ $PGM_XIST -eq 1 ]; then
 	exit 0
 fi
 
-# Exit if gcc does not exist on the system
+# Exit if compiler does not exist on the system
 if [ $COM_XIST -eq 0 ]; then
 	echo "$COM_NAME does not exist, aborting."
 	exit 1

@@ -1,100 +1,162 @@
-![DTOB](https://dl.dropboxusercontent.com/u/221687308/www/resources/github/dtob_logo.png)
+Number Base Converter
+=====================
 
-### Decimal to Binary and Binary to Decimal Converter
+The program, `nbc` is stands for the Number Base Converter. `nbc` is an open source multi-platforms number base
+converter written in C. You can use `nbc` to convert between binary, octal, decimal, and hexadecimal number. The
+program itself also provides a powerful interactive mode, as well as command line options.
 
-DTOB is an open source number bases converter written in C. You can use DTOB to convert binary numbers to decimal numbers, or decimal numbers to binary numbers. It provides two ways to convert number bases. You can either input numbers directly through the terminal, or use the interactive mode.
-
-## Installing
+Installing
+----------
 
 ### Linux and Mac OS X
 1. Open your terminal
-2. `git clone http://github.com/chiayolin/dtob`
-3. `cd /path/to/dtob`
+2. `git clone http://github.com/chiayolin/nbc`
+3. `cd /path/to/nbc`
 4. `chmod +x install`
 5. `./install`
 
 ### Windows
 1. Install Linux :-)
-2. `git clone http://github.com/chiayolin/dtob`
-3. `cd /path/to/dtob`
+2. `git clone http://github.com/chiayolin/nbc`
+3. `cd /path/to/nbc`
 4. `chmod +x install`
 5. `./install`
 
-## Usage
+Usage
+-----
 
-### Command Line
-`dtob [-options] [value (binary/decimal) <optional>]`
+###Command Line
+`nbc [ -h | -m | -f ] [ -i <in base>] [ -o <out base>] [ <value> ]`
 
-Here is a list of available options: `-h` `-d` `-b` `-i` `-m`
+Here is a list of available options: `-h` `-m` `-f` `-i` `-o`
 
-`-h` : print the help message.
 
-`-d` : convert decimal number to binary.
+| Options     | Descriptions                                                   |
+| ----------- |----------------------------------------------------------------|
+| `-h`        | print program's information, such as license, author, and etc. |
+| `-f`        | force program enther the interactive mode.                     |
+| `-i <base>` | set input number base, \<base\> is required.                   |
+| `-o <base>` | set output number base, \<base\> is required.                  |
+| `<value>`   | input number value, this value can  not be empty.              |
 
-`-b` : convert binary number to decimal.
+Here are four different in/out bases, and each base has three different form.
 
-`-i` : force interactive mode.
+`b`, `bin`, `binary`
 
-`-m` : print some info about this program.
+`o`, `oct`, `octal`
 
-Arguments `-d` and `-b` expect a number value after. For example, if we want to convert a decimal number 256 to binary, then we will use the argument `-d` with a decimal number 410:
+`d`, `dec`, `decimal`
 
-`dtob -d 410`
+`h`, `hex`, `hexadecimal`
+
+Arguments `-i` and `-o` expect a number base after, and both arguments need to be used at the same time. However, 
+the `<value>` can not be empty. For example, when you want to convert a decimal number `332000` to a binary 
+number, all you need is enter: `nbc -i dec -o bin 332000` into the termianl.
+
+`$ nbc -i dec -o bin 332000`
 
 Output:
 
-`110011010`
+`1010001000011100000`
 
-Same way for the argument `-b`, which converts binary number to decimal:
+Okay, so now if we want to convert a hexadecimal number `bbb6ae` to a decimal number, then you will need to enter
+`nbc -i hex -o dec bbb6ae` into the termianl. However, like what it says above, every number base has three
+different forms. Therefore you can either use `nbc -i h -o d bbb6ae`, `nbc -i hexadecimal -o decimal bbb6ae`, or
+any liget forms have shown above. This is what it might looks like on the terminal:
 
-`dtob -b 10011001110`
+`$ nbc -i hex -o dec bbb6ae`
 
 Output:
 
-`1230`
+`12301998`
 
-### Interactive Mode
+A shortcut to do it:
 
-You can either enter interactive mode by just runing the command `dtob`, or with the `-i` argument like, `dtob -i`.
+`$ nbc -i h -o d bbb6ae`
 
-When you get into interactive mode, you will see a prompt like this:
+Output looks the same:
 
-`use h for help` 
+`12301998`
 
-`>>> _`
+Well, there is a long way to do it as well:
 
-Now you can enter a single character `h` for help. However, here are available options: `h`, `d`, `b`, `m`, and `q`
+`nbc -i hexadecimal -o decimal bbb6ae`
 
-You can convert a decimal number to binary by using the option `d`. Here is an example:
+You will get the same right output:
 
-`machine:~ chiayo$ dtob`
+`12301998`
 
-`use h for help` 
+###Interactive Mode
 
-`>>> d` (Press RETURN)
+The program provides a powerful interactive mode, which makes the number base conversion much easier. You can either
+enter by just runing the command `nbc`, or with the `-i` argument, like, `nbc -i`. 
 
-`1112 ` (Press RETURN)
+When you get into the interactive mode, you will see a prompt like this:
 
-`10001011000`
+```
+type `help` for help
+>
+````
 
-Or from binary to decimal number:
+You can use the command `help` for help.
 
-`...`
+```
+type `help` for help
+> help (Press RETURN)
+```
 
-`>>> b` (Press RETURN)
+Then you will get a list of available commands. However, every command is defined internally. Use `help COMMAND` to 
+find out more about the function `COMMAND`. For example, I want to know more about the command `set`, then I will 
+type:
 
-`1100101010` (Press RETURN)
+```
+> help set (Press RETURN)
+```
 
-`810`
+Output:
 
-When you whant to exit the interactive mode, just simply type `q` then hit return:
+```
+set - set input/output base.
+usage: set [options [values]]
+options:
+   -i, input   <base>
+   -o, output  <base>
+values:
+   bin, oct, dec, hex
+```
 
-`>>> q` (Press RETURN)
+Now you get the idea, try every command with `help` if you want.
 
-## License
+Okay, so now let's talk about the main function of `nbc`, convert number bases. Let's say you want to convert a 
+hexdecimal number to binary. Then you would want use the `set` command to set input base to hexadecimal, and output 
+base to binary. Here is one way to do it:
+
+```
+> set input hex (Press RETURN)
+> set output bin (Press RETURN)
+```
+
+And of course, you can replace `input` with `-i` and `output` with `-o`:
+
+```
+> set -i hex (Press RETURN)
+> set -o bin (Press RETURN)
+```
+
+Available number bases can be found on the above section. You can always use the `help` command to get more information about every command. 
+
+> I hope you will find this program useful. - Chiayo Lin
+
+License
+-------
 
 Copyright (C) 2014  Chiayo Lin <chiayo.lin@gmail.com>
 
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or any later version.
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public 
+License as published by the Free Software Foundation, either version 3 of the License, or any later version.
 
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied 
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more 
+details.
+You should have received a copy of the GNU General Public License along with this program. If not, see 
+<http://www.gnu.org/licenses/>.
