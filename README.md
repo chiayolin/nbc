@@ -1,5 +1,3 @@
-#### Under Construction, Do Not Believe Anything You See !
-
 Number Base Converter
 =====================
 
