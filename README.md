@@ -64,19 +64,19 @@ Okay, so now if we want to convert a hexadecimal number `bbb6ae` to a decimal nu
 different forms. Therefore you can either use `nbc -i h -o d bbb6ae`, `nbc -i hexadecimal -o decimal bbb6ae`, or
 any liget forms have shown above. This is what it might looks like on the terminal:
 
-`$ nbc -i hex -o dec bbb6ae`
+`$ nbc -i hex -o dec bbb6ad`
 
 Output:
 
-`12301998`
+`12301997`
 
 A shortcut to do it:
 
-`$ nbc -i h -o d bbb6ae`
+`$ nbc -i h -o d bbb6ad`
 
 Output looks the same:
 
-`12301998`
+`12301997`
 
 Well, there is a long way to do it as well:
 
