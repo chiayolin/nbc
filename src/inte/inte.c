@@ -147,9 +147,17 @@ void c_set(char *arg[], const int argc) {
 	int type, buff, i;
 
 	const char *token[] = {
-		"input", "-i", "output", "-o", "bin", "oct", "dec", "hex", END };
+		"input", "-i", "output", "-o", 
+		"b", "bin", "binary", 
+		"o", "oct", "octal",
+		"d", "dec", "decimal",
+		"h", "hex", "hexadecimal", END };
 	enum { 
-		INPUT = 0, I, OUTPUT, O, C_BIN, C_OCT, C_DEC, C_HEX }; /* Numberic value for tokens */
+		INPUT = 0, I, OUTPUT, O, 
+		C_B, C_BIN, C_BINARY,
+		C_O, C_OCT, C_OCTAL, 
+		C_D, C_DEC, C_DECIMAL, 
+		C_H, C_HEX, C_HEXADECIMAL }; /* Numberic value for tokens */
 
 
 	if(argc >= 4)
@@ -176,16 +184,16 @@ void c_set(char *arg[], const int argc) {
 		i = 0;
 		i = scan(arg[2], token);
 		switch(i) {
-		case C_BIN:
+		case C_B: case C_BIN: case C_BINARY:
 			buff = BIN;
 			break;
-		case C_OCT:
+		case C_O: case C_OCT: case C_OCTAL:
 			buff = OCT;
 			break;
-		case C_DEC:
+		case C_D: case C_DEC: case C_DECIMAL:
 			buff = DEC;
 			break;
-		case C_HEX:
+		case C_H: case C_HEX: case C_HEXADECIMAL:
 			buff = HEX;
 			break;
 		default:

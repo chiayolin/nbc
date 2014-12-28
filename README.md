@@ -64,19 +64,19 @@ Okay, so now if we want to convert a hexadecimal number `bbb6ae` to a decimal nu
 different forms. Therefore you can either use `nbc -i h -o d bbb6ae`, `nbc -i hexadecimal -o decimal bbb6ae`, or
 any liget forms have shown above. This is what it might looks like on the terminal:
 
-`$ nbc -i hex -o dec bbb6ae`
+`$ nbc -i hex -o dec bbb6ad`
 
 Output:
 
-`12301998`
+`12301997`
 
 A shortcut to do it:
 
-`$ nbc -i h -o d bbb6ae`
+`$ nbc -i h -o d bbb6ad`
 
 Output looks the same:
 
-`12301998`
+`12301997`
 
 Well, there is a long way to do it as well:
 
@@ -89,7 +89,7 @@ You will get the same right output:
 ###Interactive Mode
 
 The program provides a powerful interactive mode, which makes the number base conversion much easier. You can either
-enter by just runing the command `nbc`, or with the `-i` argument, like, `nbc -i`. 
+enter by just runing the command `nbc`, or with the `-i` argument, `nbc -i`. 
 
 When you get into the interactive mode, you will see a prompt like this:
 
@@ -128,8 +128,8 @@ values:
 Now you get the idea, try every command with `help` if you want.
 
 Okay, so now let's talk about the main function of `nbc`, convert number bases. Let's say you want to convert a 
-hexdecimal number to binary. Then you would want use the `set` command to set input base to hexadecimal, and output 
-base to binary. Here is one way to do it:
+hexdecimal number `bea` to binary. Then you would want use the `set` command to set input base to hexadecimal, and 
+output base to binary. Here is one way to do it:
 
 ```
 > set input hex (Press RETURN)
@@ -143,9 +143,22 @@ And of course, you can replace `input` with `-i` and `output` with `-o`:
 > set -o bin (Press RETURN)
 ```
 
-Available number bases can be found on the above section. You can always use the `help` command to get more information about every command. 
+> Available number bases can be found on the above section. You can always use the `help` command to get more
+> information about every command. 
 
-> I hope you will find this program useful. - Chiayo Lin
+Now you are all set, so just simply enter:
+
+```
+> bea
+```
+
+Output:
+
+```
+101111101010
+```
+
+Done!!! :tada:
 
 License
 -------
