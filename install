@@ -1,5 +1,5 @@
 #!/bin/bash
-# This file is part of: nbc (Version 2.0)
+# This file is part of: nbc (Version 0.1)
 # Author: Chiayo Lin
 # Date  : Nov. 28, 2014
 
@@ -54,6 +54,7 @@ if [ $PGM_XIST -eq 0 ] && [ $COM_XIST -eq 1 ]; then
 
 	# If There is an error
 	if [ $? != 0 ]; then
+		echo "-------------------------------------"
 		echo "OMG!!! complie error(s), aborting."
 		echo "please email me with error message(s)"
 		echo "<chiayo.lin@gmail.com>"

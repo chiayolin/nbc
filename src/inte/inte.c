@@ -300,7 +300,10 @@ void c_help(char *arg[], const int argc) {
 		puts("   -i, input   <base>");
 		puts("   -o, output  <base>");
 		puts("values:");
-		puts("   bin, oct, dec, hex");
+		puts("   b, bin, binary");
+		puts("   o, oct, octal");
+		puts("   d, dec, decimal");
+		puts("   h, hex, hexadecimal");
 		break;
 	case STATE:
 		puts("state - display input/output setting.");
