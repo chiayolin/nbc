@@ -184,16 +184,16 @@ void c_set(char *arg[], const int argc) {
 		i = 0;
 		i = scan(arg[2], token);
 		switch(i) {
-		case C_B: C_BIN: C_BINARY:
+		case C_B: case C_BIN: case C_BINARY:
 			buff = BIN;
 			break;
-		case C_O: C_OCT: C_OCTAL:
+		case C_O: case C_OCT: case C_OCTAL:
 			buff = OCT;
 			break;
-		case C_D: C_DEC: C_DECIMAL:
+		case C_D: case C_DEC: case C_DECIMAL:
 			buff = DEC;
 			break;
-		case C_H: C_HEX: C_HEXADECIMAL:
+		case C_H: case C_HEX: case C_HEXADECIMAL:
 			buff = HEX;
 			break;
 		default:
