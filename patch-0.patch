@@ -1,0 +1,25 @@
+From f9805269b33b29365a31e67bce54b2cb23bb7783 Mon Sep 17 00:00:00 2001
+From: chiayolin <chiayo.lin@gmail.com>
+Date: Thu, 14 May 2015 20:54:33 +0700
+Subject: [PATCH] update version number
+
+---
+ src/inte/inte.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/inte/inte.h b/src/inte/inte.h
+index a024064..03492b0 100644
+--- a/src/inte/inte.h
++++ b/src/inte/inte.h
+@@ -20,7 +20,7 @@
+ #define INTE_H
+ 
+ /* Program version */
+-#define VERSION "0.1-rc(x)-nbc_develop" 
++#define VERSION "0.1"
+ 
+ /* External Interface */
+ void interactive();
+-- 
+2.4.0
+
