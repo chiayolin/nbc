@@ -20,7 +20,7 @@
 #define INTE_H
 
 /* Program version */
-#define VERSION "0.1-rc(x)-nbc_develop" 
+#define VERSION "0.1"
 
 /* External Interface */
 void interactive();
