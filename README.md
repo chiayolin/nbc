@@ -1,6 +1,8 @@
 Number Base Converter
 =====================
 
+[![Build Status](https://travis-ci.org/chiayolin/nbc.svg?branch=master)](https://travis-ci.org/chiayolin/nbc)
+
 The program, `nbc` is stands for the Number Base Converter. `nbc` is an open source multi-platforms number base
 converter written in C. You can use `nbc` to convert between binary, octal, decimal, and hexadecimal number. The
 program itself also provides a powerful interactive mode, as well as command line options.
