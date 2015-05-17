@@ -1,5 +1,8 @@
 # This file is part of nbc (version 0.1.1)
 language: c
+compiler:
+  - clang
+  - gcc
 
 before_install:
   - cd ./src
