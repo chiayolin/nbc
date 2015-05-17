@@ -1,14 +1,14 @@
 # This file is part of nbc (version 0.1.1)
 language: c
+os:
+  - linux
+  - osx
 compiler:
   - clang
   - gcc
-
 before_install:
   - cd ./src
-
 install:
   - make nbc
-
 script:
   - ./nbc -i hex -o bin  fffffffffffffff
