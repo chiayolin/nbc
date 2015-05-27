@@ -6,7 +6,7 @@
 SRC_PATH=./src/
 PGM_PATH=/usr/local/bin/
 PGM_NAME=nbc
-COM_NAME=gcc
+COM_NAME=cc
 PGM_XIST=0
 COM_XIST=1
 
@@ -41,7 +41,7 @@ if [ $PGM_XIST -eq 1 ]; then
 	exit 0
 fi
 
-# Exit if compiler does not exist on the system
+# Exit if a C compiler does not exist on the system
 if [ $COM_XIST -eq 0 ]; then
 	echo "$COM_NAME does not exist, aborting."
 	exit 1
@@ -49,13 +49,14 @@ fi
 
 # Installtion
 if [ $PGM_XIST -eq 0 ] && [ $COM_XIST -eq 1 ]; then
-	cd $SRC_PATH
+  oldpwd=$(pwd)
+  cd $SRC_PATH
 	make
 
 	# If There is an error
 	if [ $? != 0 ]; then
 		echo "-------------------------------------"
-		echo "OMG!!! complie error(s), aborting."
+		echo "Whoops, complie error(s), aborting."
 		echo "please email me with error message(s)"
 		echo "<chiayo.lin@gmail.com>"
 		cd ..
@@ -74,5 +75,5 @@ if [ $PGM_XIST -eq 0 ] && [ $COM_XIST -eq 1 ]; then
 
 fi
 
-cd ..
-exit 0
+cd $oldpath
+
