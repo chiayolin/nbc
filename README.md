@@ -14,14 +14,12 @@ Installing
 1. Open your terminal
 2. `git clone http://github.com/chiayolin/nbc`
 3. `cd /path/to/nbc`
-4. `chmod +x install`
 5. `./install`
 
 ### Windows
 1. Install Linux :-)
 2. `git clone http://github.com/chiayolin/nbc`
 3. `cd /path/to/nbc`
-4. `chmod +x install`
 5. `./install`
 
 Usage
