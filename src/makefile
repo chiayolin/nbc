@@ -5,6 +5,7 @@
 PRG= nbc
 COM= gcc
 SRC= main.c inte/inte.c core/core.c
+PREFIX = /usr/local
 
 $(PRG): $(SRC)
 	$(COM) -o $(PRG) $(SRC) -lm
@@ -12,8 +13,8 @@ $(PRG): $(SRC)
 debug:
 	$(COM) -Wall -Wextra -g -ggdb -o $(PRG) $(SRC) -lm
 
-install:
-	cp $(PRG) /usr/local/bin/
+install: nbc
+	cp $(PRG) $(DESTDIR)$(PREFIX)/bin/$(PRG)
 
 clean:
 	$(RM) *.o || true
