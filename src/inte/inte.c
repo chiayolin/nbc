@@ -1,7 +1,7 @@
 /*
- * nbc - shell.c - interactive mode
+ * nbc - inte.c - interactive mode
  * Number Base Converter
- * Copyright (C) 2014  Chiayo Lin <chiayo.lin@gmail.com>
+ * Copyright (C) 2014, 2015 Chiayo Lin <chiayo.lin@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -231,6 +231,9 @@ void c_prompt(char *arg[], int argc) {
 			strcpy(Prompt, "");
 			return;
 		}
+		
+		/* clean up the previous prompt */
+		strncpy(Prompt, "", MAX);
 
 		strcpy(Prompt, arg[1]);
 		Prompt[strlen(Prompt)] = ' ';
