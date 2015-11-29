@@ -1,0 +1,242 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>nbc by chiayolin</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>nbc</h1>
+        <p>The Number Base Converter.</p>
+
+        <p class="view"><a href="https://github.com/chiayolin/nbc">View the Project on GitHub <small>chiayolin/nbc</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/chiayolin/nbc/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/chiayolin/nbc/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/chiayolin/nbc">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="number-base-converter" class="anchor" href="#number-base-converter" aria-hidden="true"><span class="octicon octicon-link"></span></a>Number Base Converter</h1>
+
+<p><a href="https://travis-ci.org/chiayolin/nbc"><img src="https://travis-ci.org/chiayolin/nbc.svg?branch=master" alt="Build Status"></a></p>
+
+<p>The program, <code>nbc</code>, stands for Number Base Converter. <code>nbc</code> is an open source multi-platforms number base
+converter written in C. You can use <code>nbc</code> to convert between binary, octal, decimal, and hexadecimal number. The
+program itself also provides a powerful interactive mode, as well as command line options.</p>
+
+<h2>
+<a id="installing" class="anchor" href="#installing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installing</h2>
+
+<h3>
+<a id="linux-and-mac-os-x" class="anchor" href="#linux-and-mac-os-x" aria-hidden="true"><span class="octicon octicon-link"></span></a>Linux and Mac OS X</h3>
+
+<ol>
+<li>Open your terminal</li>
+<li><code>git clone http://github.com/chiayolin/nbc</code></li>
+<li><code>cd /path/to/nbc</code></li>
+<li><code>./install</code></li>
+</ol>
+
+<h3>
+<a id="windows" class="anchor" href="#windows" aria-hidden="true"><span class="octicon octicon-link"></span></a>Windows</h3>
+
+<ol>
+<li>Install Linux :-)</li>
+<li><code>git clone http://github.com/chiayolin/nbc</code></li>
+<li><code>cd /path/to/nbc</code></li>
+<li><code>./install</code></li>
+</ol>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<h3>
+<a id="command-line" class="anchor" href="#command-line" aria-hidden="true"><span class="octicon octicon-link"></span></a>Command Line</h3>
+
+<p><code>nbc [ -h | -m | -f ] [ -i &lt;in base&gt;] [ -o &lt;out base&gt;] [ &lt;value&gt; ]</code></p>
+
+<p>Here is a list of available options: <code>-h</code> <code>-m</code> <code>-f</code> <code>-i</code> <code>-o</code></p>
+
+<table>
+<thead>
+<tr>
+<th>Options</th>
+<th>Descriptions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>-h</code></td>
+<td>print program's information, such as license, author, and etc.</td>
+</tr>
+<tr>
+<td><code>-f</code></td>
+<td>force program enther the interactive mode.</td>
+</tr>
+<tr>
+<td><code>-i &lt;base&gt;</code></td>
+<td>set input number base, &lt;base&gt; is required.</td>
+</tr>
+<tr>
+<td><code>-o &lt;base&gt;</code></td>
+<td>set output number base, &lt;base&gt; is required.</td>
+</tr>
+<tr>
+<td><code>&lt;value&gt;</code></td>
+<td>input number value, this value can  not be empty.</td>
+</tr>
+</tbody>
+</table>
+
+<p>Here are four different in/out bases, and each base has three different form.</p>
+
+<p><code>b</code>, <code>bin</code>, <code>binary</code></p>
+
+<p><code>o</code>, <code>oct</code>, <code>octal</code></p>
+
+<p><code>d</code>, <code>dec</code>, <code>decimal</code></p>
+
+<p><code>h</code>, <code>hex</code>, <code>hexadecimal</code></p>
+
+<p>Arguments <code>-i</code> and <code>-o</code> expect a number base after, and both arguments need to be used at the same time. However, 
+the <code>&lt;value&gt;</code> can not be empty. For example, when you want to convert a decimal number <code>332000</code> to a binary 
+number, all you need is enter: <code>nbc -i dec -o bin 332000</code> into the termianl.</p>
+
+<p><code>$ nbc -i dec -o bin 332000</code></p>
+
+<p>Output:</p>
+
+<p><code>1010001000011100000</code></p>
+
+<p>Okay, so now if we want to convert a hexadecimal number <code>bbb6ae</code> to a decimal number, then you will need to enter
+<code>nbc -i hex -o dec bbb6ae</code> into the termianl. However, like what it says above, every number base has three
+different forms. Therefore you can either use <code>nbc -i h -o d bbb6ae</code>, <code>nbc -i hexadecimal -o decimal bbb6ae</code>, or
+any liget forms have shown above. This is what it might looks like on the terminal:</p>
+
+<p><code>$ nbc -i hex -o dec bbb6ad</code></p>
+
+<p>Output:</p>
+
+<p><code>12301997</code></p>
+
+<p>A shortcut to do it:</p>
+
+<p><code>$ nbc -i h -o d bbb6ad</code></p>
+
+<p>Output looks the same:</p>
+
+<p><code>12301997</code></p>
+
+<p>Well, there is a long way to do it as well:</p>
+
+<p><code>nbc -i hexadecimal -o decimal bbb6ae</code></p>
+
+<p>You will get the same right output:</p>
+
+<p><code>12301998</code></p>
+
+<h3>
+<a id="interactive-mode" class="anchor" href="#interactive-mode" aria-hidden="true"><span class="octicon octicon-link"></span></a>Interactive Mode</h3>
+
+<p>The program provides a powerful interactive mode, which makes the number base conversion much easier. You can either
+enter by just runing the command <code>nbc</code>, or with the <code>-i</code> argument, <code>nbc -i</code>. </p>
+
+<p>When you get into the interactive mode, you will see a prompt like this:</p>
+
+<pre><code>type `help` for help
+&gt;
+</code></pre>
+
+<p>You can use the command <code>help</code> for help.</p>
+
+<pre><code>type `help` for help
+&gt; help (Press RETURN)
+</code></pre>
+
+<p>Then you will get a list of available commands. However, every command is defined internally. Use <code>help COMMAND</code> to 
+find out more about the function <code>COMMAND</code>. For example, I want to know more about the command <code>set</code>, then I will 
+type:</p>
+
+<pre><code>&gt; help set (Press RETURN)
+</code></pre>
+
+<p>Output:</p>
+
+<pre><code>set - set input/output base.
+usage: set [options [values]]
+options:
+   -i, input   &lt;base&gt;
+   -o, output  &lt;base&gt;
+values:
+   bin, oct, dec, hex
+</code></pre>
+
+<p>Now you get the idea, try every command with <code>help</code> if you want.</p>
+
+<p>Okay, so now let's talk about the main function of <code>nbc</code>, convert number bases. Let's say you want to convert a 
+hexdecimal number <code>bea</code> to binary. Then you would want use the <code>set</code> command to set input base to hexadecimal, and 
+output base to binary. Here is one way to do it:</p>
+
+<pre><code>&gt; set input hex (Press RETURN)
+&gt; set output bin (Press RETURN)
+</code></pre>
+
+<p>And of course, you can replace <code>input</code> with <code>-i</code> and <code>output</code> with <code>-o</code>:</p>
+
+<pre><code>&gt; set -i hex (Press RETURN)
+&gt; set -o bin (Press RETURN)
+</code></pre>
+
+<blockquote>
+<p>Available number bases can be found on the above section. You can always use the <code>help</code> command to get more
+information about every command. </p>
+</blockquote>
+
+<p>Now you are all set, so just simply enter:</p>
+
+<pre><code>&gt; bea
+</code></pre>
+
+<p>Output:</p>
+
+<pre><code>101111101010
+</code></pre>
+
+<p>Done!!! <img class="emoji" title=":tada:" alt=":tada:" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f389.png" height="20" width="20" align="absmiddle"></p>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>Copyright (C) 2014  Chiayo Lin <a href="mailto:chiayo.lin@gmail.com">chiayo.lin@gmail.com</a></p>
+
+<p>This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public 
+License as published by the Free Software Foundation, either version 3 of the License, or any later version.</p>
+
+<p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied 
+warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more 
+details.
+You should have received a copy of the GNU General Public License along with this program. If not, see 
+<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/chiayolin">chiayolin</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
