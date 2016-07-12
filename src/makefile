@@ -13,7 +13,7 @@ debug:
 	$(COM) -Wall -Wextra -g -ggdb -o $(PRG) $(SRC) -lm
 
 install:
-	cp $(PRG) /usr/local/bin/
+	ln -s $(PRG) /usr/local/bin/
 
 clean:
 	$(RM) *.o || true
